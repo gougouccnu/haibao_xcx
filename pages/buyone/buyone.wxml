@@ -1,0 +1,96 @@
+<!--pages/buyone/buyone.wxml-->
+<import src="../../zanui-weapp/dist/quantity/index.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<view class="container">
+
+<!--view class="zan-panel kind-list-item-bd {{hasContact ? 'kind-list-item-bd-show' : ''}}" bindtap="addContacts">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">{{contacts.name}}</view>
+      <view class="zan-cell__ft">{{contacts.phone}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">{{contacts.address}}</view>
+    </view>
+</view>
+
+<view class="zan-panel kind-list-item-bd {{!hasContact ? 'kind-list-item-bd-show' : ''}}" bindtap="addContacts">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-icon zan-icon-location" style="font-size: 40px;"></view>
+      <view class="zan-cell__bd" style="margin-left: 20rpx">新增收货地址</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+</view-->
+
+  <!--view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-icon zan-icon-store" style="font-size: 20px;"></view>
+      <view class="zan-cell__bd" style="margin-left: 20rpx">王妈烤兔</view>
+    </view>
+  </view-->
+
+<block wx:for-items="{{orderList}}" wx:key="{{item.id}}">
+  <view class="zan-panel">
+    <view class="zan-card">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img"
+          src="https://img.yzcdn.cn/upload_files/2016/11/25/FpqPXlrMRjKwJs8VdTu3ZDJCj4j5.jpeg?imageView2/2/w/200/h/200/q/90/format/jpeg"
+          mode="aspectFit"
+        ></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__left-col zan-ellipsis--l2">{{item.name}}
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <!--view style="padding: 40px 15px;background-color: #653553;">
+            <template is="zan-quantity" data="{{ ...quantity1, componentId: 'quantity1' }}" />
+          </view-->
+          <template is="zan-quantity" data="{{ ...quantity3, componentId: 'quantity3', size: 'small' }}" />
+          <view class="zan-card__left-col">
+            3000克 50%
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__left-col zan-c-red">{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-form__item">
+      <text class="zan-form__title">文本</text>
+      <input
+        class="zan-form__input zan-cell__bd"
+        placeholder="输入要配音的文字"
+      />
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">选择声音</view>
+      <view class="zan-cell__ft">男声</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">选择语速:</view>
+      <view class="zan-cell__ft">正常</view>
+    </view>
+  </view>
+
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+
+<view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="synth">播放配音</button>
+      <button class="zan-btn">分享</button>
+    </view>
+  </view>
+
+
+<!--view class="container-bottom">
+    <view class="zan-btn zan-btn--warn">合成语音</view>
+</view-->
+
+</view>

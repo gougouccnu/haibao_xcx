@@ -1,0 +1,23 @@
+<!--logs.wxml-->
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+
+<view class="log-list">
+  <!--block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block-->
+
+  <view class="page-section-ctn">
+        <image class="image" src="{{selectedItemPicUrl}}"/>
+        <text class="text-title">{{itemTitle}}</text>
+        <text class="text-price">{{itemPrice}}</text>
+        <text class="text-haulage">{{itemHaulage}}</text>
+  </view>
+
+    <view class="container-bottom">
+      <text class="" bindtap="haulage">购物车</text>
+      <text class="" bindtap="add">加入购物车</text>
+      <view class="zan-btn zan-btn--warn" bindtap="buy">立即购买</view>
+    </view>
+
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+</view>

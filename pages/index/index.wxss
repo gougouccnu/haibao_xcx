@@ -1,0 +1,14 @@
+/**index.wxss**/
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-text {
+  margin: 20rpx;
+}
+
+.item-img {
+  align-content: center;
+  color: #aaa;
+}

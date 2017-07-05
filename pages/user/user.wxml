@@ -1,0 +1,67 @@
+<view class=".container">
+    <!--view class="userinfo">
+        <text class="box-text">头像</text>
+        <image class="box-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    </view-->
+
+<view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">头像</view>
+      <image class="zan-cell__ft avatar-size" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">昵称</view>
+      <view class="zan-cell__ft">{{userInfo.nickName}}</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">性别</view>
+      <view class="zan-cell__ft">男</view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">我的收货地址</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+
+    <!--view class="">
+        <view class="box">
+            <text class="box-text">昵称</text>
+            <text class="box-text">{{userInfo.nickName}}</text>
+        </view>
+
+        <view class="box">
+            <text class="box-text">性别</text>
+            <text class="box-text">男</text>
+        </view>
+
+        <view class="zan-panel">
+            <view class="zan-cell zan-cell--access">
+                <view class="zan-cell__bd">我的收货地址</view>
+                <view class="zan-cell__ft"></view>
+            </view>
+        </view>
+
+        <view class="box" bindtap="address">
+            <text class="box-text">我的收货地址</text>
+            <image class="box-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        </view>
+    </view-->
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">联系客服</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">帮助中心</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+  
+</view>

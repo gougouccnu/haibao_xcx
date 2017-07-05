@@ -1,0 +1,34 @@
+/**app.wxss**/
+
+@import "zanui-weapp/dist/index.wxss";
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: #F9F9F9;
+  background-color: #e2e2e2;
+} 
+.container-zanui {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.container-bottom {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+}
+.container-row {
+  flex-direction: row;
+}
+
+.margin-left {
+  margin-left: 20rpx;
+}

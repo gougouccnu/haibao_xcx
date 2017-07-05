@@ -1,0 +1,62 @@
+<import src="../../zanui-weapp/dist/quantity/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-icon {{ifCheckedAll ? 'zan-icon-checked' : 'zan-icon-check'}}" bindtap="checkedAll" style="font-size: 20px; color: #ff4343;">
+      </view>
+      <view class="zan-cell__bd margin-left">王妈烤兔</view>
+    </view>
+  </view>
+
+
+<block wx:for-items="{{orderList}}" wx:key="*this">
+<view class="zan-cell">
+    <!--view class="icon-small-wrp zan-cell_bd">
+      <icon class="icon-small" type="success" size="23"></icon>
+    </view-->
+
+    <view class="zan-icon {{ifCheckedAll && item.checked ? 'zan-icon-checked' : 'zan-icon-check'}}" bindtap="orderItemCheck" id="{{item.id}}" style="font-size: 20px; color: #ff4343;">
+    </view>
+
+    <view class="zan-card zan-cell_bd">
+      <view class="zan-card__thumb">
+        <image class="zan-card__img" src="{{item.pictureUrl}}"
+          mode="aspectFit"
+        ></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__left-col zan-ellipsis--l2">
+             {{item.name}}
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <!--view class="zan-card__right-col">{{item.amount}}</view-->
+          <template is="zan-quantity" data="{{ ...quantity5, componentId: 'quantity' + index, size: 'small' }}" />
+          <view class="zan-card__left-col">
+            3000克 50%
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__left-col zan-c-red">{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+  <view class="zan-panel container-bottom">
+    <view class="zan-cell">
+      <view class="zan-icon {{ifCheckedAll ? 'zan-icon-checked' : 'zan-icon-check'}}" bindtap="checkedAll" style="font-size: 20px; color: #ff4343;">
+      </view>
+      <view class="zan-cell__bd" style="margin-left: 20rpx;">全选</view>
+      <view class="zan-cell__bd" style="margin-left: 20rpx;">{{totalPrice}}</view>
+      <button class="zan-btn zan-btn--large zan-btn--primary" bindtap="submit">提交订单</button>
+    </view>
+  </view>
+
+</view>
+

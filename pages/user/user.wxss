@@ -1,0 +1,31 @@
+/**index.wxss**/
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.box-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.box-text {
+  flex: 1;
+  margin: 20rpx;
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+  text-align: left;
+  font-size: 30rpx;
+  align-items: left;
+}
+
+.avatar-size{
+  width: 64rpx;
+  height: 64rpx;
+}

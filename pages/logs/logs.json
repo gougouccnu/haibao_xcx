@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "查看启动日志",
+    "tabBar": {
+    "list": [{
+      "pagePath": "pages/order/order",
+      "text": "购物车"
+    }, {
+      "pagePath": "pages/order/order",
+      "text": "加入购物车"
+    }, {
+      "pagePath": "pages/user/user",
+      "text": "立即购买"
+    }]
+  },
+  "debug": true
+}

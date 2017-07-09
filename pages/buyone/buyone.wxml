@@ -66,13 +66,6 @@
     <view class="section">
       <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" />
     </view>
-    <view class="zan-cell zan-form__item">
-      <text class="zan-form__title">文本</text>
-      <input
-        class="zan-form__input zan-cell__bd"
-        placeholder="输入要配音的文字"
-      />
-    </view>
     <view class="zan-cell">
       <view class="zan-cell__bd">选择声音</view>
       <view class="zan-cell__ft">男声</view>

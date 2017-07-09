@@ -11,7 +11,7 @@ var contactsArray = [{
   "name": 'jinli', "phone": '18926418053',
   "address": 'wuhan city'
 }];
-var orderList = [], mp3_url;
+var orderList = [], mp3_url, text;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -34,6 +34,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     //this.audioCtx.play()
   },
   data: {
+    text: '',
     src: '',
     audioAction: {
       method: 'pause'
@@ -66,15 +67,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     var mp3_url = wx.getStorageSync('mp3_url');
     this.audioCtx.setSrc(mp3_url);
     this.audioCtx.play()
-  },
-  audioPause: function () {
-    this.audioCtx.pause()
-  },
-  audio14: function () {
-    this.audioCtx.seek(14)
-  },
-  audioStart: function () {
-    this.audioCtx.seek(0)
   },
   showToast() {
     this.showZanToast('微信支付');
@@ -151,26 +143,16 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     });
   },
 
-  share: function () {
-
-    // wx.playBackgroundAudio({
-    //   dataUrl: mp3_url,
-    //   title: '',
-    //   coverImgUrl: ''
-    // });
-    // wx.downloadFile({
-    //   url: mp3_url,
-    //   success: function (res) {
-    //     console.log('download ok');
-    //     console.log(res);
-    //     wx.playVoice({
-    //       filePath: res.tempFilePath
-    //     });
-    //   }
-    // })
-  },
   onLoad: function (options) {
     console.log(options)
+
+
+    try {
+      var text = wx.getStorageSync('text');
+    } catch (e) {
+      console.log(e);
+    }
+
     if (options.buyone == 'true') {
       console.log('buy one');
       var orderTmp = [];
@@ -195,6 +177,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
+        text: text,
         contacts: contactsArray[0],
         hasContact: hasContact,
         orderList: orderList,

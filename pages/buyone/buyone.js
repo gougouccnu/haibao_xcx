@@ -64,21 +64,11 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value);
-    wx.setStorageSync('text', e.detail.value);
-  },
-  audioPlay: function () {
-    var mp3_url = wx.getStorageSync('mp3_url');
-    this.audioCtx.setSrc(mp3_url);
-    this.audioCtx.play()
-  },
-  audioPause: function () {
-    this.audioCtx.pause()
-  },
-  audio14: function () {
-    this.audioCtx.seek(14)
-  },
-  audioStart: function () {
-    this.audioCtx.seek(0)
+    try {
+      wx.setStorageSync('text', e.detail.value);
+    } catch (e) {
+      console.log(e);
+    }
   },
   showToast() {
     this.showZanToast('微信支付');
@@ -131,7 +121,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
 
     var that = this;
     var text = wx.getStorageSync('text');
-
+    console.log('to convert: ')
+    console.log(text);
     wx.request({
       url: 'https://44480041.qcloud.la/tts?text=' + text,
       method: 'GET',

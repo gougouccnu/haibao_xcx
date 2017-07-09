@@ -83,24 +83,18 @@
 
 <view class="zan-panel">
     <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary" bindtap="synth">播放配音</button>
-      <button class="zan-btn" bindtap="share">分享</button>
-    </view>
-  </view>
+      <button class="zan-btn zan-btn--primary" bindtap="audioPlay">播放配音</button>
 
-<view class="page">
-    <view class="page__hd">
-        <text class="page__title">audio</text>
-        <text class="page__desc">音频</text>
-    </view>
-    <view class="page__bd">
-        <view class="section tc">
-            <audio src="{{ audioSrc }}" bindplay="audioPlayed" binderror="audio_error" controls="true"></audio>
-        </view>
+      <button class="zan-btn" bindtap="share">分享</button>
     </view>
 </view>
 
-<!--view class="container-bottom">
-    <view class="zan-btn zan-btn--warn">合成语音</view>
-</view-->
+<!-- audio.wxml -->
+<audio  src="{{src}}" id="myAudio" ></audio>
+
+<!--button type="primary" bindtap="audioPlay">播放</button>
+<button type="primary" bindtap="audioPause">暂停</button>
+<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+<button type="primary" bindtap="audioStart">回到开头</button-->
+
 </view>

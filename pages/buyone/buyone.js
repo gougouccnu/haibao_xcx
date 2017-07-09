@@ -63,7 +63,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     }
   },
   audioPlay: function () {
-    this.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+    var mp3_url = wx.getStorageSync('mp3_url');
+    this.audioCtx.setSrc(mp3_url);
     this.audioCtx.play()
   },
   audioPause: function () {
@@ -123,6 +124,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   //合成语音
   synth: function () {
+
+    var that = this;
     wx.request({
       url: 'https://44480041.qcloud.la/tts',
       method: 'GET',
@@ -130,10 +133,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         if (+res.statusCode == 200) {
           console.log('http get ok.');
           console.log(res.data.tt);
-          mp3_url = res.data.tt;
-          wx.setStorageSync('mp3_url', mp3_url);
+          wx.setStorageSync('mp3_url', res.data.tt);
+          that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
+          that.audioCtx.play();
+
           wx.navigateTo({
-            url: '../preview/preview?mp3_link=' + res.data.tt
+            url: '/pages/preview/preview',
           })
 
         } else {
@@ -143,30 +148,11 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       fail: (res) => {
         console.log(res);
       },
-      complete: () => {
+      complete: (e) => {
+        that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+        that.audioCtx.play()
       }
     });
-
-    wx.downloadFile({
-      url: 'https://44480041.qcloud.la/user-4136aa7e.mp3', //仅为示例，并非真实的资源
-      //url: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46',
-      success: function (res) {
-        console.log('down ok: ' + res.tempFilePath);
-        wx.playVoice({
-          filePath: res.tempFilePath,
-          fail: function(e) {
-            console.log(e);
-          },
-          complete: function(c) {
-            console.log('play voice complete');
-          }
-        })
-      },
-      fail:function (e) {
-        console.log(e);
-      }
-    })
-
   },
 
   share: function () {

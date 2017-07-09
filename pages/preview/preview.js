@@ -26,22 +26,152 @@ function caculateTotalPrice(orderList) {
   return totalPrice;
 }
 
-function get_mp3_url() {
-  var url = wx.getStorageSync('mp3_url') || '';
-  console.log(url);
-  return url;
-}
-
-Page({
+Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
+  onReady: function (e) {
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
+    //this.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+    //this.audioCtx.play()
+  },
   data: {
-    //audioSrc: 'https://44480041.qcloud.la/user-4136aa7e.mp3'
-    audioSrc: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46'
+    src: '',
+    audioAction: {
+      method: 'pause'
+    },
+    contacts: {
+      "name": 'lishaowei', "phone": '18926418053',
+      "address": 'wuhan city'
+    },
+    totalPrice: 0,
+    userInfo: {},
+    orderList: [],
+    hasContact: false,
+    quantity1: {
+      quantity: 1,
+      min: 1,
+      max: 99
+    },
+    quantity2: {
+      quantity: 1,
+      min: 1,
+      max: 1
+    },
+    quantity3: {
+      quantity: 1,
+      min: 1,
+      max: 99
+    }
+  },
+  audioPlay: function () {
+    var mp3_url = wx.getStorageSync('mp3_url');
+    this.audioCtx.setSrc(mp3_url);
+    this.audioCtx.play()
+  },
+  audioPause: function () {
+    this.audioCtx.pause()
+  },
+  audio14: function () {
+    this.audioCtx.seek(14)
+  },
+  audioStart: function () {
+    this.audioCtx.seek(0)
+  },
+  showToast() {
+    this.showZanToast('微信支付');
+  },
+  //TODO: 订单确认页面不需要再修改数量，要去掉
+  handleZanQuantityChange(e) {
+    var componentId = e.componentId;
+    var quantity = e.quantity;
+    //重新计算总价
+    orderList[0]["amount"] = quantity;
+    console.log('quantity clicked');
+    console.log(e);
+    this.setData({
+      [`${componentId}.quantity`]: quantity,
+      totalPrice: caculateTotalPrice(orderList)
+    });
   },
   //事件处理函数
+  check: function () {
+    var that = this;
+    wx.setStorageSync('selectedItemIndex', '1')
+    var Diary = Bmob.Object.extend("diary");
+    var diary = new Diary();
+    diary.set("title", "hello");
+    diary.set("content", "hello world");
+    //添加数据，第一个入口参数是null
+    diary.save(null, {
+      success: function (result) {
+        // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
+        console.log("日记创建成功, objectId:" + result.id);
+        wx.showToast({
+          title: '订单数据上传成功',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      error: function (result, error) {
+        // 添加失败
+        console.log('创建日记失败');
+        wx.showToast({
+          title: '订单数据上传失败',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    });
+  },
+  //合成语音
+  synth: function () {
 
+    var that = this;
+    wx.request({
+      url: 'https://44480041.qcloud.la/tts',
+      method: 'GET',
+      success: (res) => {
+        if (+res.statusCode == 200) {
+          console.log('http get ok.');
+          console.log(res.data.tt);
+          wx.setStorageSync('mp3_url', res.data.tt);
+          that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
+          that.audioCtx.play();
+
+        } else {
+          console.log('http code error.');
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+      },
+      complete: (e) => {
+        that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+        that.audioCtx.play()
+      }
+    });
+  },
+
+  share: function () {
+
+    // wx.playBackgroundAudio({
+    //   dataUrl: mp3_url,
+    //   title: '',
+    //   coverImgUrl: ''
+    // });
+    // wx.downloadFile({
+    //   url: mp3_url,
+    //   success: function (res) {
+    //     console.log('download ok');
+    //     console.log(res);
+    //     wx.playVoice({
+    //       filePath: res.tempFilePath
+    //     });
+    //   }
+    // })
+  },
   onLoad: function (options) {
     console.log(options)
-    if (options.mp3_link == 'true') {
+    if (options.buyone == 'true') {
       console.log('buy one');
       var orderTmp = [];
       orderTmp.push(app.globalItemArray[parseInt(app.requestDetailid)]);
@@ -58,10 +188,19 @@ Page({
     } else {
       hasContact = true;
     }
-  },
-  audio_error: function (e) {
-    console.log('audio error:');
-    console.log(e);
+
+    // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        contacts: contactsArray[0],
+        hasContact: hasContact,
+        orderList: orderList,
+        totalPrice: caculateTotalPrice(orderList)
+      })
+    })
   },
   addContacts: function () {
     wx.navigateTo({
@@ -75,4 +214,4 @@ Page({
       path: '/pages/index/index'
     }
   }
-})
+}))

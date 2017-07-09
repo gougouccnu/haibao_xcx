@@ -11,7 +11,7 @@ var contactsArray = [{
   "name": 'jinli', "phone": '18926418053',
   "address": 'wuhan city'
 }];
-var orderList = [];
+var orderList = [], mp3_url;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -28,6 +28,9 @@ function caculateTotalPrice(orderList) {
 
 Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   data: {
+    audioAction: {
+      method: 'pause'
+    },
     contacts: {
       "name": 'lishaowei', "phone": '18926418053',
       "address": 'wuhan city'
@@ -100,7 +103,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   //合成语音
   synth: function () {
-
     wx.request({
       url: 'https://44480041.qcloud.la/tts',
       method: 'GET',
@@ -108,6 +110,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         if (+res.statusCode == 200) {
           console.log('http get ok.');
           console.log(res.data.tt);
+          mp3_url = res.data.tt;
+          wx.setStorageSync('mp3_url', mp3_url);
+          wx.navigateTo({
+            url: '../preview/preview?mp3_link=' + res.data.tt
+          })
+
         } else {
           console.log('http code error.');
         }
@@ -119,6 +127,25 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       }
     });
 
+  },
+
+  share: function () {
+
+    // wx.playBackgroundAudio({
+    //   dataUrl: mp3_url,
+    //   title: '',
+    //   coverImgUrl: ''
+    // });
+    // wx.downloadFile({
+    //   url: mp3_url,
+    //   success: function (res) {
+    //     console.log('download ok');
+    //     console.log(res);
+    //     wx.playVoice({
+    //       filePath: res.tempFilePath
+    //     });
+    //   }
+    // })
   },
   onLoad: function (options) {
     console.log(options)

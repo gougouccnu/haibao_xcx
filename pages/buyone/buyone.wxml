@@ -68,13 +68,13 @@
       <textarea bindblur="bindTextAreaBlur" auto-height   auto-focus placeholder="自动变高" />
     </view>
     </view>
-    <view class="zan-cell" bindtap="selectVoice">
-      <view class="zan-cell__bd">选择声音</view>
-      <view class="zan-cell__ft">男声</view>
+    <view class="zan-cell zan-cell--access" bindtap="selectVoice">
+      <view class="zan-cell__bd">{{ voiceType }}</view>
+      <view class="zan-cell__ft"></view>
     </view>
-    <view class="zan-cell">
+    <view class="zan-cell zan-cell--access">
       <view class="zan-cell__bd">选择语速:</view>
-      <view class="zan-cell__ft">正常</view>
+      <view class="zan-cell__ft"></view>
     </view>
   </view>
 

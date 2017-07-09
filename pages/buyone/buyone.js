@@ -38,6 +38,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     audioAction: {
       method: 'pause'
     },
+    voiceType: 'polo',
     contacts: {
       "name": 'lishaowei', "phone": '18926418053',
       "address": 'wuhan city'
@@ -195,12 +196,15 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       hasContact = true;
     }
 
+    var voiceTypeValue = wx.getStorageSync('voiceType') || 'voice';
+
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
+        voiceType: voiceTypeValue,
         contacts: contactsArray[0],
         hasContact: hasContact,
         orderList: orderList,

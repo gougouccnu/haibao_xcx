@@ -21,6 +21,8 @@ Page({
       }
     }
 
+    wx.setStorageSync('voiceType', contactsArray[checkItemId]["name"]);
+
     this.setData({
       contactsArray: contactsArray
     })

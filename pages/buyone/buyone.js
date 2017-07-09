@@ -39,7 +39,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     audioAction: {
       method: 'pause'
     },
-    voiceType: '',
+    voiceType: '选择语音类型',
+    voice_speed: '选择语速',
     contacts: {
       "name": 'lishaowei', "phone": '18926418053',
       "address": 'wuhan city'
@@ -75,6 +76,11 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   selectVoice: function() {
     wx.navigateTo({
       url: '../../pages/select_voice/select_voice',
+    })
+  },
+  select_speed: function () {
+    wx.navigateTo({
+      url: '../../pages/select_speed/select_speed',
     })
   },
   showToast() {
@@ -205,7 +211,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
-        voiceType: 'select voice',
         contacts: contactsArray[0],
         hasContact: hasContact,
         orderList: orderList,
@@ -216,15 +221,16 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShow: function (options) {
     console.log('on show');
 
-    var voiceTypeValue = wx.getStorageSync('voiceType') || 'Select voice';
-
+    var voiceTypeValue = wx.getStorageSync('voiceType') || '选择语音类型';
+    var voice_speed_value = wx.getStorageSync('voice_speed') || '选择语速';
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
-        voiceType: voiceTypeValue
+        voiceType: voiceTypeValue,
+        voice_speed: voice_speed_value
       })
     })
   },

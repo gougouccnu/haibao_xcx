@@ -12,11 +12,4 @@
     </view>
   </block>
 
-
-<view class="zan-panel" bindtap="confirm">
-    <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary">Sure</button>
-    </view>
-</view>
-
 </view>

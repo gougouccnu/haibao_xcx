@@ -72,10 +72,10 @@
       <view class="zan-cell__bd">{{ voiceType }}</view>
       <view class="zan-cell__ft"></view>
     </view>
-    <!--view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">选择语速:</view>
+    <view class="zan-cell zan-cell--access" bindtap="select_speed">
+      <view class="zan-cell__bd">{{ voice_speed }}</view>
       <view class="zan-cell__ft"></view>
-    </view-->
+    </view>
   </view>
 
   <template is="zan-toast" data="{{ zanToast }}"></template>

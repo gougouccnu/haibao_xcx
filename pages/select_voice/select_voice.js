@@ -25,9 +25,7 @@ Page({
 
     this.setData({
       contactsArray: contactsArray
-    })
-  },
-  confirm: function (e) {
+    });
     console.log('try to nav');
     wx.navigateBack({
       delta: 1

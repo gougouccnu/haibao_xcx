@@ -8,7 +8,10 @@
     "pages/buyone/buyone",
     "pages/contacts/contacts",
     "pages/addContact/addContact",
-    "pages/preview/preview"
+    "pages/preview/preview",
+    "pages/select_voice/select_voice",
+    "pages/select_moban/select_moban",
+    "pages/select_speed/select_speed"
   ],
   "window": {
     "navigationBarTitleText": "Demo"

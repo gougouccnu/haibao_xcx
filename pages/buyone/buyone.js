@@ -70,6 +70,11 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       console.log(e);
     }
   },
+  selectVoice: function() {
+    wx.navigateTo({
+      url: '../../pages/select_voice/select_voice',
+    })
+  },
   showToast() {
     this.showZanToast('微信支付');
   },

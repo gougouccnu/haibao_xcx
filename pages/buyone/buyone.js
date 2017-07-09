@@ -196,10 +196,10 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       hasContact = true;
     }
 
-    var voiceTypeValue = wx.getStorageSync('voiceType') || 'voice';
+    var voiceTypeValue = wx.getStorageSync('voiceType');
 
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
-    var that = this
+    var that = this;
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据
@@ -209,6 +209,21 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         hasContact: hasContact,
         orderList: orderList,
         totalPrice: caculateTotalPrice(orderList)
+      })
+    })
+  },
+  onShow: function (options) {
+    console.log('on show');
+
+    var voiceTypeValue = wx.getStorageSync('voiceType');
+
+    // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
+    var that = this;
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        voiceType: voiceTypeValue
       })
     })
   },

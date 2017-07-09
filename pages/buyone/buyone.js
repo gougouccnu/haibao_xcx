@@ -34,11 +34,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     //this.audioCtx.play()
   },
   data: {
+    height: 40,
     src: '',
     audioAction: {
       method: 'pause'
     },
-    voiceType: 'polo',
+    voiceType: '',
     contacts: {
       "name": 'lishaowei', "phone": '18926418053',
       "address": 'wuhan city'
@@ -130,7 +131,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     console.log('to convert: ')
     console.log(text);
     wx.request({
-      url: 'https://44480041.qcloud.la/tts?text=' + text,
+      url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text),
       method: 'GET',
       success: (res) => {
         if (+res.statusCode == 200) {
@@ -204,7 +205,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
-        voiceType: voiceTypeValue,
+        voiceType: 'select voice',
         contacts: contactsArray[0],
         hasContact: hasContact,
         orderList: orderList,
@@ -215,7 +216,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShow: function (options) {
     console.log('on show');
 
-    var voiceTypeValue = wx.getStorageSync('voiceType');
+    var voiceTypeValue = wx.getStorageSync('voiceType') || 'Select voice';
 
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;

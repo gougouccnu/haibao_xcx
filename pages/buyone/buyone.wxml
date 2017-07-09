@@ -62,6 +62,10 @@
 </block>
 
   <view class="zan-panel">
+    <!--textarea.wxml-->
+    <view class="section">
+      <textarea bindblur="bindTextAreaBlur" auto-height placeholder="自动变高" />
+    </view>
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">文本</text>
       <input

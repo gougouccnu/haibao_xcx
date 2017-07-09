@@ -62,6 +62,10 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       max: 99
     }
   },
+  bindTextAreaBlur: function (e) {
+    console.log(e.detail.value);
+    wx.setStorageSync('text', e.detail.value);
+  },
   audioPlay: function () {
     var mp3_url = wx.getStorageSync('mp3_url');
     this.audioCtx.setSrc(mp3_url);
@@ -126,8 +130,10 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   synth: function () {
 
     var that = this;
+    var text = wx.getStorageSync('text');
+
     wx.request({
-      url: 'https://44480041.qcloud.la/tts',
+      url: 'https://44480041.qcloud.la/tts?text=' + text,
       method: 'GET',
       success: (res) => {
         if (+res.statusCode == 200) {

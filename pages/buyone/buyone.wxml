@@ -81,12 +81,12 @@
 
   <template is="zan-toast" data="{{ zanToast }}"></template>
 
-<!--view class="zan-panel">
+<view class="zan-panel">
     <view class="zan-btns">
       <button class="zan-btn zan-btn--primary" bindtap="synth">播放配音</button>
       <button class="zan-btn" bindtap="share">分享</button>
     </view>
-  </view-->
+</view>
 
 <!-- audio.wxml -->
 <audio  src="{{src}}" id="myAudio" ></audio>

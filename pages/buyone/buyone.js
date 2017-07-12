@@ -12,6 +12,7 @@ var contactsArray = [{
   "address": 'wuhan city'
 }];
 var orderList = [], mp3_url;
+var voiceTypeValue, voice_speed_value;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -136,12 +137,15 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     var text = wx.getStorageSync('text');
     console.log('to convert: ')
     console.log(text);
+    var per = 1;
+    var spd = 8;
+    
     wx.request({
-      url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text),
+      url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=' + per + '&spd=' + spd,
       method: 'GET',
       success: (res) => {
-        if (+res.statusCode == 200) {
-          console.log('http get ok.');
+        
+          console.log(res.statusCode);
           console.log(res.data.tt);
           wx.setStorageSync('mp3_url', res.data.tt);
           that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
@@ -150,10 +154,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
           wx.navigateTo({
             url: '/pages/preview/preview',
           })
-
-        } else {
-          console.log('http code error.');
-        }
       },
       fail: (res) => {
         console.log(res);
@@ -221,8 +221,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShow: function (options) {
     console.log('on show');
 
-    var voiceTypeValue = wx.getStorageSync('voiceType') || '选择语音类型';
-    var voice_speed_value = wx.getStorageSync('voice_speed') || '选择语速';
+    voiceTypeValue = wx.getStorageSync('voiceType') || '选择语音类型';
+    voice_speed_value = wx.getStorageSync('voice_speed') || '选择语速';
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;
     //调用应用实例的方法获取全局数据

@@ -47,6 +47,7 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    currentVoiceSpeed: {"name": "select voice speed", "value": 5}
   }
 })

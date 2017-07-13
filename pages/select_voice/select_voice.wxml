@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
 
-  <block wx:for-items="{{ contactsArray }}" wx:key="{{ item.name }}">
+  <block wx:for-items="{{ voiceTypeArray }}" wx:key="{{ item.name }}">
     <view class="zan-cell" id="{{ index }}" bindtap="checked">
       <view class="zan-cell-bd zan-icon {{item.ifChecked ? 'zan-icon-checked' : 'zan-icon-check'}}" style="font-size: 20px; color: #ff4343;">
       </view>

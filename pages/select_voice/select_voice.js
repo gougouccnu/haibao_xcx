@@ -1,5 +1,5 @@
 // pages/select_voice/select_voice.js
-var contactsArray;
+var voiceTypeArray;
 
 Page({
 
@@ -7,24 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contactsArray: contactsArray
+    voiceTypeArray: voiceTypeArray
   },
   checked: function (event) {
     var checkItemId = parseInt(event.currentTarget.id);
     console.log(event);
 
-    for (var i = 0; i < contactsArray.length; i++) {
+    for (var i = 0; i < voiceTypeArray.length; i++) {
       if (i == checkItemId) {
-        contactsArray[checkItemId]["ifChecked"] = true;
+        voiceTypeArray[checkItemId]["ifChecked"] = true;
       } else {
-        contactsArray[i]["ifChecked"] = false;
+        voiceTypeArray[i]["ifChecked"] = false;
       }
     }
 
-    wx.setStorageSync('voiceType', contactsArray[checkItemId]["name"]);
+    wx.setStorageSync('voiceType', voiceTypeArray[checkItemId]["name"]);
 
     this.setData({
-      contactsArray: contactsArray
+      voiceTypeArray: voiceTypeArray
     });
     console.log('try to nav');
     wx.navigateBack({
@@ -36,12 +36,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    contactsArray = [
-      { "name": 'mike', "ifChecked": true },
-      { "name": 'polo', "ifChecked": false }
+    voiceTypeArray = [
+      { "name": 'mike', "ifChecked": true, "value": 0},
+      { "name": 'polo', "ifChecked": false, "value": 1}
     ];
     this.setData({
-      contactsArray: contactsArray
+      voiceTypeArray: voiceTypeArray
     });
   },
 

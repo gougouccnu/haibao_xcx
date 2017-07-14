@@ -21,7 +21,7 @@ Page({
       }
     }
 
-    wx.setStorageSync('voiceSpeed', {"name": contactsArray[checkItemId]["name"], "value": 4});
+    wx.setStorageSync('voiceSpeed', { "name": contactsArray[checkItemId]["name"], "value": contactsArray[checkItemId]["value"]});
 
     this.setData({
       contactsArray: contactsArray
@@ -37,8 +37,8 @@ Page({
    */
   onLoad: function (options) {
     contactsArray = [
-      { "name": '慢', "ifChecked": false },
-      { "name": '快', "ifChecked": false }
+      { "name": '正常语速', "ifChecked": false, "value": 5},
+      { "name": '1.2倍语速', "ifChecked": false, "value": 7}
     ];
     this.setData({
       contactsArray: contactsArray

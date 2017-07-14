@@ -205,8 +205,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       hasContact = true;
     }
 
-    var voiceTypeValue = wx.getStorageSync('voiceType');
-
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;
     //调用应用实例的方法获取全局数据
@@ -223,7 +221,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShow: function (options) {
     console.log('on show');
 
-    voiceTypeValue = wx.getStorageSync('voiceType') || '选择语音类型';
+    voiceTypeValue = wx.getStorageSync('voiceType').name || '选择语音类型';
     voice_speed_value = wx.getStorageSync('voiceSpeed').name || '选择语速';
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;

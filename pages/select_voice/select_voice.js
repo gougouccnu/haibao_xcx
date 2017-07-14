@@ -21,7 +21,7 @@ Page({
       }
     }
 
-    wx.setStorageSync('voiceType', voiceTypeArray[checkItemId]["name"]);
+    wx.setStorageSync('voiceType', {"name": voiceTypeArray[checkItemId]["name"], "value": voiceTypeArray[checkItemId]["value"]});
 
     this.setData({
       voiceTypeArray: voiceTypeArray
@@ -37,8 +37,8 @@ Page({
    */
   onLoad: function (options) {
     voiceTypeArray = [
-      { "name": 'mike', "ifChecked": true, "value": 0},
-      { "name": 'polo', "ifChecked": false, "value": 1}
+      { "name": '男声', "ifChecked": true, "value": 0},
+      { "name": '女声', "ifChecked": false, "value": 1}
     ];
     this.setData({
       voiceTypeArray: voiceTypeArray

@@ -64,16 +64,22 @@
   <view class="zan-panel">
     <view class="zan-cell zan-form__item">
       <text class="zan-form__title">要合成语音的文本</text>
-      <text class="zan-form__title">{{ text }}</text>
-      
+      <text class="zan-form__title"></text>
     </view>
+
     <view class="zan-cell">
-      <view class="zan-cell__bd">选择声音</view>
-      <view class="zan-cell__ft">男声</view>
+      <view class="zan-cell__bd">{{ text }}</view>
+      <view class="zan-cell__ft"></view>
     </view>
+    
     <view class="zan-cell">
-      <view class="zan-cell__bd">选择语速:</view>
-      <view class="zan-cell__ft">正常</view>
+      <view class="zan-cell__bd">男声</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+    
+    <view class="zan-cell">
+      <view class="zan-cell__bd">正常</view>
+      <view class="zan-cell__ft"></view>
     </view>
   </view>
 
@@ -82,8 +88,9 @@
 <view class="zan-panel">
     <view class="zan-btns">
       <button class="zan-btn zan-btn--primary" bindtap="audioPlay">播放配音</button>
+      <button class="zan-btn zan-btn--primary" bindtap="audioPlay">重新编辑</button>
 
-      <button class="zan-btn" bindtap="share">分享</button>
+      <button class="zan-btn" bindtap="share">下载</button>
     </view>
 </view>
 

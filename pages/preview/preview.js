@@ -35,6 +35,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   data: {
     text: '',
+    voice: '',
+    speed: '',
     src: '',
     audioAction: {
       method: 'pause'
@@ -149,6 +151,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
 
     try {
       var text = wx.getStorageSync('text');
+      var voice = wx.getStorageSync('voiceType');
+      var speed = wx.getStorageSync('voiceSpeed');
     } catch (e) {
       console.log(e);
     }
@@ -178,6 +182,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       //更新数据
       that.setData({
         text: text,
+        voice: voice.name,
+        speed: speed.name,
         contacts: contactsArray[0],
         hasContact: hasContact,
         orderList: orderList,

@@ -40,7 +40,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     audioAction: {
       method: 'pause'
     },
-    textCase: 'text case',
+    textCase: '文本范例',
     voiceType: '选择语音类型',
     voice_speed: '选择语速',
     contacts: {

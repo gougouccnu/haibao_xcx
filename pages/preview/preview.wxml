@@ -62,7 +62,7 @@
 </block>
 
   <view class="zan-panel">
-    <view class="zan-cell zan-form__item">
+    <!--view class="zan-cell zan-form__item">
       <text class="zan-form__title">要合成语音的文本</text>
       <text class="zan-form__title"></text>
     </view>
@@ -70,15 +70,20 @@
     <view class="zan-cell">
       <view class="zan-cell__bd">{{ text }}</view>
       <view class="zan-cell__ft"></view>
+    </view-->
+
+    <!--textarea.wxml-->
+    <view class="zan-cell">
+      <text>{{ text }}</text>
     </view>
     
     <view class="zan-cell">
-      <view class="zan-cell__bd">男声</view>
+      <view class="zan-cell__bd">{{ voice }}</view>
       <view class="zan-cell__ft"></view>
     </view>
-    
+
     <view class="zan-cell">
-      <view class="zan-cell__bd">正常</view>
+      <view class="zan-cell__bd">{{ speed }}</view>
       <view class="zan-cell__ft"></view>
     </view>
   </view>

@@ -146,8 +146,9 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     var text = wx.getStorageSync('text');
     console.log('to convert: ')
     console.log(text);
-    var per = 1;
-    var spd = 7;
+    var per = '1';
+    var spd = '5';
+    per = wx.getStorageSync("voiceType").value;
     spd = wx.getStorageSync("voiceSpeed").value;
 
     wx.setStorageSync("text_moban", text);

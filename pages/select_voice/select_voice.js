@@ -37,8 +37,8 @@ Page({
    */
   onLoad: function (options) {
     voiceTypeArray = [
-      { "name": '男声', "ifChecked": false, "value": 0 },
-      { "name": '女声', "ifChecked": false, "value": 1 }
+      { "name": '男声', "ifChecked": false, "value": '1'},
+      { "name": '女声', "ifChecked": false, "value": '0'}
     ];
 
     // try {

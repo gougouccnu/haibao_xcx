@@ -65,7 +65,7 @@
     <!--textarea.wxml-->
     <view class="zan-cell">
     <view class="section">
-      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus>{{ text }}</textarea>
+      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus value="{{ text }}" placeholder="选择下面的文本范例修改或直接输入要合成语音的文本"/>
     </view>
     </view>
 

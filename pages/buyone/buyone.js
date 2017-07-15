@@ -40,6 +40,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     audioAction: {
       method: 'pause'
     },
+    text: '88888',
     textCase: '文本范例',
     voiceType: '选择语音类型',
     voice_speed: '选择语速',
@@ -75,6 +76,13 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       console.log(e);
     }
   },
+
+  selectTextMoban: function () {
+    wx.navigateTo({
+      url: '../../pages/select_moban/select_moban',
+    })
+  },
+
   selectVoice: function() {
     wx.navigateTo({
       url: '../../pages/select_voice/select_voice',
@@ -221,6 +229,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShow: function (options) {
     console.log('on show');
 
+    var text = wx.getStorageSync('text_moban');
     voiceTypeValue = wx.getStorageSync('voiceType').name || '选择语音类型';
     voice_speed_value = wx.getStorageSync('voiceSpeed').name || '选择语速';
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
@@ -229,6 +238,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
+        text: '999',
         voiceType: voiceTypeValue,
         voice_speed: voice_speed_value
       })

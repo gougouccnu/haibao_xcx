@@ -1,2 +1,21 @@
-<!--pages/select_moban/select_moban.wxml-->
-<text>pages/select_moban/select_moban.wxml</text>
+
+<!--index.wxml-->
+<view class="container">
+
+  <view class="zan-panel">
+    <!--textarea.wxml-->
+
+  <block wx:for-items="{{ text_moban_array }}" wx:key="{{ item.name }}">
+    <view class="zan-cell" id="{{ index }}" bindtap="checked">
+      <view class="zan-cell-bd zan-icon {{item.ifChecked ? 'zan-icon-checked' : 'zan-icon-check'}}" style="font-size: 20px; color: #32cd32;">
+      </view>
+      <view class="zan-cell-bd">  
+        <view style="margin-left: 10px;">{{item.name}}</view>
+      </view>
+      <!--view id="{{ index }}" bindtap="editContact" class="zan-icon zan-icon-store" style="font-size: 40px;"></view-->
+    </view>
+  </block>
+
+  </view>
+
+</view>

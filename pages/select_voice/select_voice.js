@@ -1,5 +1,5 @@
 // pages/select_voice/select_voice.js
-var voiceTypeArray;
+var voiceTypeArray = [];
 
 Page({
 
@@ -37,9 +37,22 @@ Page({
    */
   onLoad: function (options) {
     voiceTypeArray = [
-      { "name": '男声', "ifChecked": true, "value": 0},
-      { "name": '女声', "ifChecked": false, "value": 1}
+      { "name": '男声', "ifChecked": false, "value": 0 },
+      { "name": '女声', "ifChecked": false, "value": 1 }
     ];
+
+    // try {
+    //   var value = wx.getStorageSync('voiceType');
+    //   if (value) {
+    //     // Do something with return value
+    //     voiceTypeArray = value;
+    //   }
+    // } catch (e) {
+    //   // Do something when catch error
+    //   console.log('read storage sync voice error');
+      
+    // }
+
     this.setData({
       voiceTypeArray: voiceTypeArray
     });

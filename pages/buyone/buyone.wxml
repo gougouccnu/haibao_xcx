@@ -65,11 +65,11 @@
     <!--textarea.wxml-->
     <view class="zan-cell">
     <view class="section">
-      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus placeholder="输入文本或选择文本范例" />
+      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus>{{ text }}</textarea>
     </view>
     </view>
 
-    <view class="zan-cell zan-cell--access" bindtap="selectVoice">
+    <view class="zan-cell zan-cell--access" bindtap="selectTextMoban">
       <view class="zan-cell__bd">{{ textCase }}</view>
       <view class="zan-cell__ft"></view>
     </view>

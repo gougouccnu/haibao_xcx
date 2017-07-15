@@ -65,7 +65,7 @@
     <!--textarea.wxml-->
     <view class="zan-cell">
     <view class="section">
-      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus placeholder="input text or select text case below" />
+      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus placeholder="输入文本或选择文本范例" />
     </view>
     </view>
 

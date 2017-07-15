@@ -70,6 +70,11 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     this.audioCtx.setSrc(mp3_url);
     this.audioCtx.play()
   },
+  edit: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   showToast() {
     this.showZanToast('微信支付');
   },

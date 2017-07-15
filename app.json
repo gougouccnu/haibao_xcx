@@ -14,7 +14,7 @@
     "pages/select_speed/select_speed"
   ],
   "window": {
-    "navigationBarTitleText": "Demo"
+    "navigationBarTitleText": "配音神器"
   },
   "tabBar": {
     "list": [{
@@ -23,9 +23,6 @@
     }, {
       "pagePath": "pages/buyone/buyone",
       "text": "制作配音"
-    }, {
-      "pagePath": "pages/user/user",
-      "text": "我的"
     }]
   },
   "debug": true

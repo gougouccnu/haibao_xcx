@@ -1,11 +1,20 @@
+
 <!--index.wxml-->
-<view class="container">
-
-<block wx:for-items="{{ itemArray }}" wx:key="{{ item.id }}">
-  <view id="{{ item.id }}" bindtap="bindViewTap" class="item">
-    <image class="item-img" src="{{ item.pictureUrl }}" background-size="cover"></image>
-    <text class="item-text">{{ item.name }}</text>
+<view class="zan-panel">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="../../resources/pic/icon_peiyin.png" background-size="cover"></image>
+    <text>配音神器</text>
   </view>
-</block>
 
+  <view class="userinfo" style="margin-top: 80px;">
+    <text class="userinfo">人工智能黑科技</text>
+  </view>
+
+  <view class="userinfo">
+    <text class="userinfo">一键文字转语音</text>
+  </view>
+
+  <view class="userinfo">
+    <text class="userinfo">快速生成广告配音，地摊叫卖配音等</text>
+  </view>
 </view>

@@ -40,3 +40,11 @@
 .kind-list-item-bd-show {
   height: auto;
 }
+
+.zan-cell-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  font-size: 14px;
+}

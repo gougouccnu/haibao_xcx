@@ -63,10 +63,13 @@
 
   <view class="zan-panel">
     <!--textarea.wxml-->
+  
     <view class="zan-cell">
-    <view class="section">
-      <textarea bindblur="bindTextAreaBlur" maxlength="1500" auto-focus value="{{ text }}" placeholder="选择下面的文本范例修改或直接输入要合成语音的文本"/>
-    </view>
+      <form bindsubmit="synth" class="zan-cell">
+        <textarea name="textarea" bindblur="bindTextAreaBlur" maxlength="1500" auto-focus value="{{ text }}" placeholder="选择下面的文本范例修改或直接输入要合成语音的文本"/>
+        <!--button form-type="submit"> 提交 </button-->
+        <button form-type="submit" class="zan-btn zan-btn--primary">合成配音</button>
+      </form>
     </view>
 
     <view class="zan-cell zan-cell--access" bindtap="selectTextMoban">
@@ -86,10 +89,10 @@
 
   <template is="zan-toast" data="{{ zanToast }}"></template>
 
-<view class="zan-panel">
+<!--view class="zan-panel">
     <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary" bindtap="synth">合成配音</button>
+      <button class="zan-btn zan-btn--primary" bindtap="synth2">合成配音</button>
     </view>
-</view>
+</view-->
 
 </view>

@@ -140,10 +140,13 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     });
   },
   //合成语音
-  synth: function () {
+  synth: function (e) {
+    console.log('@@@@@@@@@@@@@@');
+    console.log(e);
+    var text = e.detail.value.textarea;
 
     var that = this;
-    var text = wx.getStorageSync('text');
+    //var text = wx.getStorageSync('text');
     console.log('to convert: ')
     console.log(text);
     var per = '1';

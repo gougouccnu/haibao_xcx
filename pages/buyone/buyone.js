@@ -195,6 +195,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         that.audioCtx.play()
       }
     });
+
+    wx.showToast({
+      title: '语音合成中...',
+      icon: 'loading',
+      duration: 2000
+    })
   },
 
   share: function () {

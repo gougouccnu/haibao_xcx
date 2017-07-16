@@ -148,6 +148,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         that.audioCtx.play()
       }
     });
+
+    // wx.showToast({
+    //   title: '语音下载中...',
+    //   icon: 'loading',
+    //   duration: 1000
+    // })
   },
 
   onLoad: function (options) {

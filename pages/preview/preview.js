@@ -35,8 +35,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   data: {
     text: '',
-    voice: '',
-    speed: '',
+    voice: '女声',
+    speed: '正常语速',
     src: '',
     audioAction: {
       method: 'pause'
@@ -154,47 +154,40 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     console.log(options)
 
 
+    // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
+    var that = this;
+
     try {
       var text = wx.getStorageSync('text');
       var voice = wx.getStorageSync('voiceType');
       var speed = wx.getStorageSync('voiceSpeed');
+
+      that.setData({
+        text: text,
+        voice: voice.name,
+        speed: speed.name
+      })
     } catch (e) {
       console.log(e);
     }
 
-    if (options.buyone == 'true') {
-      console.log('buy one');
-      var orderTmp = [];
-      orderTmp.push(app.globalItemArray[parseInt(app.requestDetailid)]);
-      orderList = orderTmp;
-    } else {
-      console.log('buy from haulage');
-      orderList = wx.getStorageSync('orderList');
-    }
+    // if (options.buyone == 'true') {
+    //   console.log('buy one');
+    //   var orderTmp = [];
+    //   orderTmp.push(app.globalItemArray[parseInt(app.requestDetailid)]);
+    //   orderList = orderTmp;
+    // } else {
+    //   console.log('buy from haulage');
+    //   orderList = wx.getStorageSync('orderList');
+    // }
 
-    var hasContact;
-    var contactsArray = wx.getStorageSync('contactsArray') || [];
-    if (contactsArray.length == 0) {
-      hasContact = false;
-    } else {
-      hasContact = true;
-    }
-
-    // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        text: text,
-        voice: voice.name,
-        speed: speed.name,
-        contacts: contactsArray[0],
-        hasContact: hasContact,
-        orderList: orderList,
-        totalPrice: caculateTotalPrice(orderList)
-      })
-    })
+    // var hasContact;
+    // var contactsArray = wx.getStorageSync('contactsArray') || [];
+    // if (contactsArray.length == 0) {
+    //   hasContact = false;
+    // } else {
+    //   hasContact = true;
+    // }
   },
   addContacts: function () {
     wx.navigateTo({
@@ -204,7 +197,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   // added by lsw 
   onShareAppMessage: function () {
     return {
-      title: 'custom share title',
+      title: '人工智能黑科技，一键文字转语音',
       path: '/pages/index/index'
     }
   }

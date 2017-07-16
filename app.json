@@ -1,13 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/order/order",
-    "pages/user/user",
-    "pages/haulage/haulage",
     "pages/buyone/buyone",
-    "pages/contacts/contacts",
-    "pages/addContact/addContact",
     "pages/preview/preview",
     "pages/select_voice/select_voice",
     "pages/select_moban/select_moban",
@@ -23,7 +17,8 @@
     }, {
       "pagePath": "pages/buyone/buyone",
       "text": "制作配音"
-    }]
+    }],
+    "position": "top"
   },
   "debug": true
 }

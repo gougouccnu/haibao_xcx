@@ -145,6 +145,22 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     console.log(e);
     var text = e.detail.value.textarea;
 
+    if(text==='') {
+      wx.showModal({
+        title: '提示',
+        content: '请输入要合成语音的文本',
+        showCancel: false
+      })
+      return
+    }
+
+    console.log(e.detail.value);
+    try {
+      wx.setStorageSync('text', text);
+    } catch (e) {
+      console.log(e);
+    }
+
     var that = this;
     //var text = wx.getStorageSync('text');
     console.log('to convert: ')

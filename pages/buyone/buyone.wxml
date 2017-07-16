@@ -71,7 +71,9 @@
         <button form-type="submit" class="zan-btn zan-btn--primary">合成配音</button>
       </form>
     </view>
+  </view>
 
+  <view class="zan-panel">
     <view class="zan-cell zan-cell--access" bindtap="selectTextMoban">
       <view class="zan-cell__bd">{{ textCase }}</view>
       <view class="zan-cell__ft"></view>

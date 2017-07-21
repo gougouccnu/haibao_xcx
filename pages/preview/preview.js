@@ -70,6 +70,37 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     this.audioCtx.setSrc(mp3_url);
     this.audioCtx.play()
   },
+  send: function () {
+    var email = 'lishaoweiccnu@163.com';
+    var url = wx.getStorageSync('mp3_url');
+    var len = url.split('/').length;
+    var audioFileName = url.split('/')[len - 1];
+    console.log(audioFileName);
+
+    wx.request({
+      url: 'https://44480041.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
+      method: 'GET',
+      success: (res) => {
+
+        console.log(res.statusCode);
+        console.log(res.data.status);
+        if(res.data.status == 'ok') {
+          wx.showToast({
+            title: 'send success',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+      },
+      complete: (e) => {
+        console.log('send finish');
+      }
+    });
+  },
+
   edit: function () {
     wx.navigateBack({
       delta: 1

@@ -3,15 +3,25 @@
 <import src="../../zanui-weapp/dist/toast/index.wxml" />
 <view class="container">
 
-
 <view class="zan-panel">
-  <input class="zan-form__input zan-cell__bd"  value='{{ inputValue }}' placeholder="email addr" bindinput="bindKeyInput"/>
-</view>
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image  class="userinfo-avatar" src="../../resources/pic/send.png" background-size="cover" mode="scaleToFill"></image>
+  </view>
 
-<view class="zan-panel">
-    <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary" bindtap="send">Send to Email</button>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <input class="zan-form__input zan-cell__bd"  value='{{ inputValue }}' placeholder="输入邮箱地址" bindinput="bindKeyInput"/>
+        <button class="zan-btn zan-btn--primary" bindtap="send" style="margin-top: 10px;">发送到邮箱</button>
+      </view>  
+      
+        
     </view>
 </view>
 
+<!--view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="send">发送到邮箱</button>
+    </view>
+</view-->
+  
 </view>

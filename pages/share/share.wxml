@@ -5,12 +5,12 @@
 
   <view class="zan-panel">
     <view class="zan-cell zan-cell--access" bindtap="shareAddr">
-      <view class="zan-cell__bd"> share pic</view>
+      <view class="zan-cell__bd">复制配音文件下载链接</view>
       <view class="zan-cell__ft"></view>
     </view>
 
     <view class="zan-cell zan-cell--access" bindtap="sendToEmail">
-      <view class="zan-cell__bd">send to email</view>
+      <view class="zan-cell__bd">发送配音文件到邮箱</view>
       <view class="zan-cell__ft"></view>
     </view>
   </view>

@@ -34,17 +34,17 @@ Page({
         console.log(res.data.status);
         if (res.data.status == 'ok') {
           wx.showToast({
-            title: 'send success',
+            title: '发送成功，2分钟后请查收邮箱',
             icon: 'success',
-            duration: 1000
+            duration: 2000
           })
 
           wx.setStorageSync('emailAddr', email);
         } else {
           wx.showToast({
-            title: 'send fail, check email address or try later',
+            title: '发送失败，请检查邮箱地址是否正确或待会再发送试试',
             icon: 'loading',
-            duration: 1000
+            duration: 2000
           })
         }
       },

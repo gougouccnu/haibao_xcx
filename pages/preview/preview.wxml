@@ -83,7 +83,7 @@
     <view class="zan-btns">
       <button class="zan-btn zan-btn--primary" bindtap="audioPlay">播放配音</button>
       <button class="zan-btn" bindtap="edit">重新编辑</button>
-      <button class="zan-btn" bindtap="send">Send to Email</button>
+      <button class="zan-btn" bindtap="send">分享或发送配音文件</button>
     </view>
 </view>
 

@@ -1,2 +1,27 @@
-<!--shareAddr.wxml-->
-<text>shareAddr.wxml</text>
+<!--pages/buyone/buyone.wxml-->
+<import src="../../zanui-weapp/dist/quantity/index.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<view class="container">
+
+<view class="zan-panel">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image  class="userinfo-avatar" src="../../resources/pic/icon_copy.png" background-size="cover" mode="scaleToFill"></image>
+  </view>
+
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <text>{{ textValue }}</text>
+        <button class="zan-btn zan-btn--primary" bindtap="copy" style="margin-top: 10px;">复制配音下载链接</button>
+      </view>  
+      
+        
+    </view>
+</view>
+
+<!--view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="send">发送到邮箱</button>
+    </view>
+</view-->
+  
+</view>

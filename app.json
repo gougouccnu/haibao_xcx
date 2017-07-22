@@ -5,19 +5,25 @@
     "pages/preview/preview",
     "pages/select_voice/select_voice",
     "pages/select_moban/select_moban",
-    "pages/select_speed/select_speed"
+    "pages/select_speed/select_speed",
+    "pages/share/share",
+    "pages/sendToEmail/sendToEmail",
+    "pages/shareAddr/shareAddr"
   ],
   "window": {
     "navigationBarTitleText": "配音神器"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/buyone/buyone",
-      "text": "制作配音"
-    }],
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/buyone/buyone",
+        "text": "制作配音"
+      }
+    ],
     "position": "top"
   },
   "debug": false

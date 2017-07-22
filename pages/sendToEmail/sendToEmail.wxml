@@ -1,0 +1,17 @@
+<!--pages/buyone/buyone.wxml-->
+<import src="../../zanui-weapp/dist/quantity/index.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<view class="container">
+
+
+<view class="zan-panel">
+  <input class="zan-form__input zan-cell__bd"  value='{{ inputValue }}' placeholder="email addr" bindinput="bindKeyInput"/>
+</view>
+
+<view class="zan-panel">
+    <view class="zan-btns">
+      <button class="zan-btn zan-btn--primary" bindtap="send">Send to Email</button>
+    </view>
+</view>
+
+</view>

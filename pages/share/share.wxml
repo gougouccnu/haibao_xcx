@@ -1,0 +1,18 @@
+<!--pages/buyone/buyone.wxml-->
+<import src="../../zanui-weapp/dist/quantity/index.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
+<view class="container">
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access" bindtap="shareAddr">
+      <view class="zan-cell__bd"> share pic</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+
+    <view class="zan-cell zan-cell--access" bindtap="sendToEmail">
+      <view class="zan-cell__bd">send to email</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+
+</view>

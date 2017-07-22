@@ -1,0 +1,119 @@
+// sendToEmail.js
+var emailAddr;
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    inputValue: ''
+  },
+
+  bindKeyInput: function (e) {
+    emailAddr = e.detail.value;
+    this.setData({
+      inputValue: emailAddr
+    })
+  },
+
+  send: function () {
+    //var email = 'lishaoweiccnu@163.com';
+    var email = emailAddr;
+    var url = wx.getStorageSync('mp3_url');
+    var len = url.split('/').length;
+    var audioFileName = url.split('/')[len - 1];
+    console.log(audioFileName);
+
+    wx.request({
+      url: 'https://44480041.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
+      method: 'GET',
+      success: (res) => {
+
+        console.log(res.statusCode);
+        console.log(res.data.status);
+        if (res.data.status == 'ok') {
+          wx.showToast({
+            title: 'send success',
+            icon: 'success',
+            duration: 1000
+          })
+
+          wx.setStorageSync('emailAddr', email);
+        } else {
+          wx.showToast({
+            title: 'send fail, check email address or try later',
+            icon: 'loading',
+            duration: 1000
+          })
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+      },
+      complete: (e) => {
+        console.log('send finish');
+      }
+    });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    emailAddr = wx.getStorageSync('emailAddr') || '';
+    console.log(emailAddr);
+    this.setData({
+      inputValue: emailAddr
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    console.log(emailAddr);
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
+})

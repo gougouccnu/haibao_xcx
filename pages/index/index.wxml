@@ -19,4 +19,26 @@
     <text class="userinfo">极速生成广告配音，地摊叫卖等配音</text>
   </view>
 </view>
+
+
+<view class="zan-panel">
+  
+  <view class="userinfo" style="margin-top: 20px;">
+    <contact-button 
+    type="default-dark" 
+    size="27"
+    session-from="weapp"
+    >
+    </contact-button>
+  </view>
+
+  <view class="userinfo" style="margin-top: 20px;">
+    <text>点击上面的对话按钮反馈产品意见</text>
+  </view>
+
+  <view class="userinfo">
+    <text class="userinfo">欢迎加作者微信gougouccnu交流</text>
+  </view>
+</view>
+
 </view>

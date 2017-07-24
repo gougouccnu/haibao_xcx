@@ -8,7 +8,8 @@
     "pages/select_speed/select_speed",
     "pages/share/share",
     "pages/sendToEmail/sendToEmail",
-    "pages/shareAddr/shareAddr"
+    "pages/shareAddr/shareAddr",
+    "pages/about/about"
   ],
   "window": {
     "navigationBarTitleText": "配音神器"

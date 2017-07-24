@@ -3,30 +3,22 @@
 <view class="container">
 <view class="zan-panel">
   <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="../../resources/pic/icon_peiyin.png" background-size="cover"></image>
-    <text>配音神器</text>
+    <image class="userinfo-avatar" src="../../resources/pic/me.jpg" background-size="cover"></image>
+    <text>小李子</text>
   </view>
 
   <view class="userinfo" style="margin-top: 40px;">
-    <text class="userinfo">人工智能黑科技</text>
+    <text class="userinfo">啥都会点的工程师</text>
   </view>
 
   <view class="userinfo">
-    <text class="userinfo">一键文字转语音</text>
+    <text class="userinfo">希望做出好用的工具，帮你省时间</text>
   </view>
 
   <view class="userinfo">
-    <text class="userinfo">极速生成广告配音，地摊叫卖等配音</text>
+    <text class="userinfo">本人微信号:gougouccnu，欢迎勾搭</text>
   </view>
 </view>
-
-  <view class="zan-panel">
-    <view class="zan-btns">
-      <button class="zan-btn" open-type="share">转发好友</button>
-      <button class="zan-btn" open-type="contact">反馈意见</button>
-      <button class="zan-btn" bindtap="about">关于作者</button>
-    </view>
-  </view>
 
 <!--view class="zan-panel">
   

@@ -19,6 +19,11 @@ Page({
       url: '../logs/logs'
     })
   },
+  about: function() {
+    wx.navigateTo({
+      url: '../../pages/about/about',
+    })
+  },
   onLoad: function () {
     console.log('onLoad')
     var addressJson = require('../common/address3.js');

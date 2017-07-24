@@ -10,7 +10,7 @@
 
     <view class="zan-cell">
       <view class="zan-cell__bd">
-        <input class="zan-form__input zan-cell__bd"  value='{{ inputValue }}' placeholder="输入邮箱地址" bindinput="bindKeyInput"/>
+        <input class="zan-form__input zan-cell__bd" style="font-size: 20px" value='{{ inputValue }}' placeholder="输入邮箱地址" bindinput="bindKeyInput"/>
         <button class="zan-btn zan-btn--primary" bindtap="send" style="margin-top: 10px;">发送到邮箱</button>
       </view>  
       

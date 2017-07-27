@@ -12,7 +12,7 @@ var contactsArray = [{
   "address": 'wuhan city'
 }];
 var orderList = [], mp3_url;
-var voiceTypeValue, voice_speed_value;
+var voiceTypeValue, voice_speed_value, text;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -25,6 +25,14 @@ function caculateTotalPrice(orderList) {
     }
   }
   return totalPrice;
+}
+
+function getVoiceTypeJson(voiceTypeName) {
+  return { "name": '男声', "value": 1 }
+}
+
+function getVoiceSpeedJson(voiceSpeedName) {
+  return { "name": '慢速1.2', "value": 3 }
 }
 
 Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
@@ -170,7 +178,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     per = wx.getStorageSync("voiceType").value;
     spd = wx.getStorageSync("voiceSpeed").value;
 
-    wx.setStorageSync("text_moban", text);
+    wx.setStorageSync("text_moban", { "name": '', "value": text });
 
     wx.request({
       url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=' + per + '&spd=' + spd,
@@ -223,44 +231,40 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   },
   onLoad: function (options) {
     console.log(options)
-    if (options.buyone == 'true') {
-      console.log('buy one');
-      var orderTmp = [];
-      orderTmp.push(app.globalItemArray[parseInt(app.requestDetailid)]);
-      orderList = orderTmp;
+    if (options.text) {
+      console.log('buy one on load');
+      text = options.text;
+      voiceTypeValue = options.voice;
+      voice_speed_value = options.speed;
+      
+      wx.setStorageSync('text_moban', {"name": '', "value": text});
+      wx.setStorageSync('voiceType', getVoiceTypeJson(voiceTypeValue));
+      wx.setStorageSync('voiceSpeed', getVoiceSpeedJson(voice_speed_value));
+
+      this.setData({
+        text: text,
+        voiceType: voiceTypeValue,
+        voice_speed: voice_speed_value
+      })
     } else {
       console.log('buy from haulage');
-      orderList = wx.getStorageSync('orderList');
-    }
-
-    var hasContact;
-    var contactsArray = wx.getStorageSync('contactsArray') || [];
-    if (contactsArray.length == 0) {
-      hasContact = false;
-    } else {
-      hasContact = true;
-    }
-
-    // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
-    var that = this;
-      that.setData({
-        contacts: contactsArray[0],
-        hasContact: hasContact,
-        orderList: orderList,
-        totalPrice: caculateTotalPrice(orderList)
-      })
+    }    
   },
   onShow: function (options) {
     console.log('on show');
 
-    var text = wx.getStorageSync('text_moban').value;
+    var textValue = wx.getStorageSync('text_moban').value || '';
     voiceTypeValue = wx.getStorageSync('voiceType').name || '选择语音类型';
     voice_speed_value = wx.getStorageSync('voiceSpeed').name || '选择语速';
+
+    console.log(textValue);
+    console.log(voiceTypeValue);
+    console.log(voice_speed_value);
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;
     //调用应用实例的方法获取全局数据
       that.setData({
-        text: text,
+        text: textValue,
         voiceType: voiceTypeValue,
         voice_speed: voice_speed_value
       })

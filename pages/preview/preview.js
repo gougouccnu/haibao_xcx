@@ -12,6 +12,7 @@ var contactsArray = [{
   "address": 'wuhan city'
 }];
 var orderList = [], mp3_url, text;
+var voice, speed;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -70,11 +71,12 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     this.audioCtx.setSrc(mp3_url);
     this.audioCtx.play()
   },
-  send: function () {
+  sendEmail: function () {
     wx.navigateTo({
-      url: '../share/share',
+      url: '../sendToEmail/sendToEmail',
     });
   },
+  
 
   edit: function () {
     wx.navigateBack({
@@ -127,40 +129,6 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       }
     });
   },
-  //合成语音
-  synth: function () {
-
-    var that = this;
-    wx.request({
-      url: 'https://44480041.qcloud.la/tts',
-      method: 'GET',
-      success: (res) => {
-        if (+res.statusCode == 200) {
-          console.log('http get ok.');
-          console.log(res.data.tt);
-          wx.setStorageSync('mp3_url', res.data.tt);
-          that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
-          that.audioCtx.play();
-
-        } else {
-          console.log('http code error.');
-        }
-      },
-      fail: (res) => {
-        console.log(res);
-      },
-      complete: (e) => {
-        that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
-        that.audioCtx.play()
-      }
-    });
-
-    // wx.showToast({
-    //   title: '语音下载中...',
-    //   icon: 'loading',
-    //   duration: 1000
-    // })
-  },
 
   onLoad: function (options) {
     console.log(options)
@@ -170,14 +138,14 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     var that = this;
 
     try {
-      var text = wx.getStorageSync('text');
-      var voice = wx.getStorageSync('voiceType');
-      var speed = wx.getStorageSync('voiceSpeed');
+      text = wx.getStorageSync('text');
+      voice = wx.getStorageSync('voiceType').name;
+      speed = wx.getStorageSync('voiceSpeed').name;
 
       that.setData({
         text: text,
-        voice: voice.name,
-        speed: speed.name
+        voice: voice,
+        speed: speed
       })
     } catch (e) {
       console.log(e);
@@ -210,7 +178,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onShareAppMessage: function () {
     return {
       title: '人工智能黑科技，一键文字转语音',
-      path: '/pages/index/index'
+      path: '/pages/buyone/buyone?text=' + text +'&voice=' + voice + '&speed=' + speed
     }
   }
 }))

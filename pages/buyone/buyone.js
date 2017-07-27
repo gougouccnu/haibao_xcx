@@ -209,7 +209,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       console.log(e);
     }
 
-    var that = this;
+    //var that = this;
     //var text = wx.getStorageSync('text');
     console.log('to convert: ')
     console.log(text);
@@ -228,8 +228,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
           console.log(res.statusCode);
           console.log(res.data.tt);
           wx.setStorageSync('mp3_url', res.data.tt);
-          that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
-          that.audioCtx.play();
+          // that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
+          // that.audioCtx.play();
 
           wx.navigateTo({
             url: '/pages/preview/preview',
@@ -239,8 +239,8 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         console.log(res);
       },
       complete: (e) => {
-        that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
-        that.audioCtx.play()
+        // that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+        // that.audioCtx.play()
       }
     });
 

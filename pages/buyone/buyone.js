@@ -12,7 +12,7 @@ var contactsArray = [{
   "address": 'wuhan city'
 }];
 var orderList = [], mp3_url;
-var voiceTypeValue, voice_speed_value, text;
+var voiceTypeValue, voiceSpeedValue, text;
 
 function caculateTotalPrice(orderList) {
   var totalPrice = 0;
@@ -28,11 +28,51 @@ function caculateTotalPrice(orderList) {
 }
 
 function getVoiceTypeJson(voiceTypeName) {
-  return { "name": '男声', "value": 1 }
+  // voiceTypeArray = [
+  //   { "name": '男声', "ifChecked": false, "value": '1' },
+  //   { "name": '女声', "ifChecked": false, "value": '0' }
+  // ];
+  var returnValue;
+
+  switch(voiceTypeName)
+  {
+    case '女声':
+      returnValue =  { "name": '女声', "value": 0 };
+      break;
+    case '男声':
+      returnValue =  { "name": '男声', "value": 1 };
+      break;
+    default:
+      returnValue =  { "name": '女声', "value": 0 };
+  }
+
+  return returnValue;
 }
 
 function getVoiceSpeedJson(voiceSpeedName) {
-  return { "name": '慢速1.2', "value": 3 }
+  // voiceSpeedArray = [
+  //   { "name": '1.2倍慢速', "ifChecked": false, "value": '3' },
+  //   { "name": '正常语速', "ifChecked": false, "value": '5' },
+  //   { "name": '1.2倍快速', "ifChecked": false, "value": '7' }
+  // ];
+
+  var returnValue;
+
+  switch (voiceSpeedName) {
+    case '1.2倍慢速':
+      returnValue = { "name": '1.2倍慢速', "value": 3 };
+      break;
+    case '正常语速':
+      returnValue = { "name": '正常语速', "value": 5 };
+      break;
+    case '1.2倍快速':
+      returnValue = { "name": '1.2倍快速', "value": 7 };
+      break;
+    default:
+      returnValue = { "name": '正常语速', "value": 5 };
+  }
+
+  return returnValue;
 }
 
 Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
@@ -51,7 +91,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     text: '',
     textCase: '文本范例',
     voiceType: '选择语音类型',
-    voice_speed: '选择语速',
+    voiceSpeed: '选择语速',
     contacts: {
       "name": 'lishaowei', "phone": '18926418053',
       "address": 'wuhan city'
@@ -235,16 +275,16 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       console.log('buy one on load');
       text = options.text;
       voiceTypeValue = options.voice;
-      voice_speed_value = options.speed;
+      voiceSpeedValue = options.speed;
       
       wx.setStorageSync('text_moban', {"name": '', "value": text});
       wx.setStorageSync('voiceType', getVoiceTypeJson(voiceTypeValue));
-      wx.setStorageSync('voiceSpeed', getVoiceSpeedJson(voice_speed_value));
+      wx.setStorageSync('voiceSpeed', getVoiceSpeedJson(voiceSpeedValue));
 
       this.setData({
         text: text,
         voiceType: voiceTypeValue,
-        voice_speed: voice_speed_value
+        voiceSpeed: voiceSpeedValue
       })
     } else {
       console.log('buy from haulage');
@@ -255,18 +295,18 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
 
     var textValue = wx.getStorageSync('text_moban').value || '';
     voiceTypeValue = wx.getStorageSync('voiceType').name || '选择语音类型';
-    voice_speed_value = wx.getStorageSync('voiceSpeed').name || '选择语速';
+    voiceSpeedValue = wx.getStorageSync('voiceSpeed').name || '选择语速';
 
     console.log(textValue);
     console.log(voiceTypeValue);
-    console.log(voice_speed_value);
+    console.log(voiceSpeedValue);
     // this值在方法的函数内指向Page，一般用that变量首先捕获this added by lsw
     var that = this;
     //调用应用实例的方法获取全局数据
       that.setData({
         text: textValue,
         voiceType: voiceTypeValue,
-        voice_speed: voice_speed_value
+        voiceSpeed: voiceSpeedValue
       })
   },
   addContacts: function () {

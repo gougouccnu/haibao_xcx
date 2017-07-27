@@ -84,7 +84,7 @@
       <view class="zan-cell__ft"></view>
     </view>
     <view class="zan-cell zan-cell--access" bindtap="select_speed">
-      <view class="zan-cell__bd">{{ voice_speed }}</view>
+      <view class="zan-cell__bd">{{ voiceSpeed }}</view>
       <view class="zan-cell__ft"></view>
     </view>
   </view>

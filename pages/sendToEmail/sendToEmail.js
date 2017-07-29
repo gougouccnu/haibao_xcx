@@ -114,6 +114,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '人工智能黑科技，一键文字转语音',
+      path: '/pages/index/index'
+    }
   }
 })

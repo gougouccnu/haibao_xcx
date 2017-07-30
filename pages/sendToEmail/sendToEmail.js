@@ -25,6 +25,15 @@ Page({
     var audioFileName = url.split('/')[len - 1];
     console.log(audioFileName);
 
+    if(email == '') {
+      wx.showToast({
+        title: '请输入要发送的邮箱地址',
+        icon: 'loading',
+        duration: 3000
+      })
+      return;
+    }
+
     wx.showModal({
       title: '提示',
       content: '发送到邮箱：' + emailAddr,

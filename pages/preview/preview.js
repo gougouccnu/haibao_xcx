@@ -76,6 +76,23 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
       url: '../sendToEmail/sendToEmail',
     });
   },
+  copy: function () {
+    wx.setClipboardData({
+      data: wx.getStorageSync('mp3_url'),
+      success: function (res) {
+        // wx.getClipboardData({
+        //   success: function (res) {
+        //     console.log(res.data) // data
+        //   }
+        // })
+        wx.showToast({
+          title: '音频链接地址已复制到剪切板',
+          icon: 'success',
+          duration: 3000
+        })
+      }
+    })
+  },
   
 
   edit: function () {

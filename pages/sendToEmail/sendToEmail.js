@@ -25,36 +25,47 @@ Page({
     var audioFileName = url.split('/')[len - 1];
     console.log(audioFileName);
 
-    wx.request({
-      url: 'https://44480041.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
-      method: 'GET',
-      success: (res) => {
+    wx.showModal({
+      title: '提示',
+      content: '发送到邮箱：' + emailAddr,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: 'https://44480041.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
+            method: 'GET',
+            success: (res) => {
 
-        console.log(res.statusCode);
-        console.log(res.data.status);
-        if (res.data.status == 'ok') {
-          wx.showToast({
-            title: '发送成功，2分钟后请查收邮箱',
-            icon: 'success',
-            duration: 2000
-          })
+              console.log(res.statusCode);
+              console.log(res.data.status);
+              if (res.data.status == 'ok') {
+                wx.showToast({
+                  title: '发送成功，2分钟后请查收邮箱',
+                  icon: 'success',
+                  duration: 3000
+                })
 
-          wx.setStorageSync('emailAddr', email);
-        } else {
-          wx.showToast({
-            title: '发送失败，请检查邮箱地址是否正确或待会再发送试试',
-            icon: 'loading',
-            duration: 2000
-          })
+                wx.setStorageSync('emailAddr', email);
+              } else {
+                wx.showToast({
+                  title: '发送失败，请检查邮箱地址是否正确或待会再发送试试',
+                  icon: 'loading',
+                  duration: 3000
+                })
+              }
+            },
+            fail: (res) => {
+              console.log(res);
+            },
+            complete: (e) => {
+              console.log('send finish');
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
-      },
-      fail: (res) => {
-        console.log(res);
-      },
-      complete: (e) => {
-        console.log('send finish');
       }
-    });
+    })
   },
 
   /**

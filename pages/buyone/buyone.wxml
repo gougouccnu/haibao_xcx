@@ -66,7 +66,7 @@
   
     <view class="zan-cell">
       <form bindsubmit="synth" class="zan-cell">
-        <textarea name="textarea" bindblur="bindTextAreaBlur" maxlength="1500" auto-focus value="{{ text }}" placeholder="选择下面的文本范例修改或直接输入要合成语音的文本"/>
+        <textarea style="font-size: 16px;height: 240px;" name="textarea" bindblur="bindTextAreaBlur" maxlength="1500" auto-focus value="{{ text }}" placeholder="选择下面的文本范例修改或直接输入要合成语音的文本"/>
         <!--button form-type="submit"> 提交 </button-->
         <button form-type="submit" class="zan-btn zan-btn--primary" style="margin-top: 10px;">合成配音</button>
       </form>

@@ -37,8 +37,10 @@ Page({
    */
   onLoad: function (options) {
     voiceTypeArray = [
-      { "name": '男声', "ifChecked": false, "value": '1'},
-      { "name": '女声', "ifChecked": false, "value": '0'}
+      { "name": '男声-标准', "ifChecked": false, "value": '1'},
+      { "name": '男声-老王', "ifChecked": false, "value": '3'},
+      { "name": '女声-标准', "ifChecked": false, "value": '0'},
+      { "name": '女声-甜甜', "ifChecked": false, "value": '4'}
     ];
 
     // try {

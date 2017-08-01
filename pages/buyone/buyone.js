@@ -36,11 +36,17 @@ function getVoiceTypeJson(voiceTypeName) {
 
   switch(voiceTypeName)
   {
-    case '女声':
+    case '女声-标准':
       returnValue =  { "name": '女声', "value": 0 };
       break;
-    case '男声':
+    case '男声-标准':
       returnValue =  { "name": '男声', "value": 1 };
+      break;
+    case '女声-甜甜':
+      returnValue = { "name": '女声', "value": 4 };
+      break;
+    case '男声-老王':
+      returnValue = { "name": '男声', "value": 3 };
       break;
     default:
       returnValue =  { "name": '女声', "value": 0 };
@@ -222,6 +228,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
 
     wx.request({
       url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=' + per + '&spd=' + spd,
+      //url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=3&spd=' + spd,
       method: 'GET',
       success: (res) => {
         

@@ -8,6 +8,24 @@ Page({
   
   },
 
+  copyWeixin: function () {
+    wx.setClipboardData({
+      data: 'gougouccnu',
+      success: function (res) {
+        // wx.getClipboardData({
+        //   success: function (res) {
+        //     console.log(res.data) // data
+        //   }
+        // })
+        wx.showToast({
+          title: '作者微信号已复制到剪切板',
+          icon: 'success',
+          duration: 3000
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

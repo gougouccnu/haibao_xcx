@@ -22,9 +22,9 @@
 
   <view class="zan-panel">
     <view class="zan-btns">
-      <button class="zan-btn" open-type="share">转发好友</button>
-      <button class="zan-btn" open-type="contact">反馈意见</button>
-      <button class="zan-btn" bindtap="about">关于作者</button>
+      <button class="zan-btn zan-btn--primary" open-type="share">转发好友</button>
+      <button id="feedback" class="zan-btn" open-type="contact">反馈意见</button>
+      <button id="about" class="zan-btn" bindtap="about">关于作者</button>
     </view>
   </view>
 

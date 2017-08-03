@@ -18,6 +18,14 @@
   <view class="userinfo">
     <text class="userinfo">本人微信号:gougouccnu，欢迎勾搭</text>
   </view>
+
+
+</view>
+
+<view class="zan-panel">
+    <view class="zan-btns">
+      <button id="copyWeixin" class="zan-btn zan-btn--primary" bindtap="copyWeixin">复制微信号</button>
+    </view>
 </view>
 
 <!--view class="zan-panel">

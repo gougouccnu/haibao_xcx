@@ -49,9 +49,9 @@ Page({
               console.log(res.data.status);
               if (res.data.status == 'ok') {
                 wx.showToast({
-                  title: '发送成功，2分钟后请查收邮箱',
+                  title: '发送成功，1分钟后请查收邮箱',
                   icon: 'success',
-                  duration: 3000
+                  duration: 4000
                 })
 
                 wx.setStorageSync('emailAddr', email);

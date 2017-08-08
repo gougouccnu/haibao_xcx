@@ -18,10 +18,15 @@
     </view>
 </view>
 
-<!--view class="zan-panel">
-    <view class="zan-btns">
-      <button class="zan-btn zan-btn--primary" bindtap="send">发送到邮箱</button>
-    </view>
-</view-->
-  
+<view class="zan-panel">
+
+  <view class="userinfo">
+    <text class="userinfo">可能被邮箱误识别为垃圾邮件</text>
+  </view>
+
+  <view class="userinfo">
+    <text class="userinfo">若收件箱没有，请在垃圾箱找找看</text>
+  </view>
+</view>
+
 </view>

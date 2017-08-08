@@ -37,9 +37,11 @@ Page({
    */
   onLoad: function (options) {
     voiceSpeedArray = [
-      { "name": '1.2倍慢速', "ifChecked": false, "value": '3'},
+      { "name": '1.5倍慢速', "ifChecked": false, "value": '3' },
+      { "name": '1.2倍慢速', "ifChecked": false, "value": '4'},
       { "name": '正常语速', "ifChecked": false, "value": '5'},
-      { "name": '1.2倍快速', "ifChecked": false, "value": '7'}
+      { "name": '1.2倍快速', "ifChecked": false, "value": '6'},
+      { "name": '1.5倍快速', "ifChecked": false, "value": '7' }
     ];
     this.setData({
       voiceSpeedArray: voiceSpeedArray

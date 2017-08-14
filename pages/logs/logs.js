@@ -51,7 +51,7 @@ Page(Object.assign({}, Zan.Toast,{
     console.log(app.requestDetailid)
 
     wx.request({
-      url: 'https://44480041.qcloud.la/tts',
+      url: 'https://29957802.qcloud.la/tts',
       method: 'GET',
       success: (res) => {
         if (+res.statusCode == 200) {

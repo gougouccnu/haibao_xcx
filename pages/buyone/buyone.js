@@ -85,7 +85,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
   onReady: function (e) {
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     this.audioCtx = wx.createAudioContext('myAudio')
-    //this.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+    //this.audioCtx.setSrc('https://29957802.qcloud.la/user-4136aa7e.mp3')
     //this.audioCtx.play()
   },
   data: {
@@ -227,15 +227,15 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
     wx.setStorageSync("text_moban", { "name": '', "value": text });
 
     wx.request({
-      url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=' + per + '&spd=' + spd,
-      //url: 'https://44480041.qcloud.la/tts?text=' + encodeURI(text) + '&per=3&spd=' + spd,
+      url: 'https://29957802.qcloud.la/tts?text=' + encodeURI(text) + '&per=' + per + '&spd=' + spd,
+      //url: 'https://29957802.qcloud.la/tts?text=' + encodeURI(text) + '&per=3&spd=' + spd,
       method: 'GET',
       success: (res) => {
         
           console.log(res.statusCode);
           console.log(res.data.tt);
           wx.setStorageSync('mp3_url', res.data.tt);
-          // that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3');
+          // that.audioCtx.setSrc('https://29957802.qcloud.la/user-4136aa7e.mp3');
           // that.audioCtx.play();
 
           wx.navigateTo({
@@ -246,7 +246,7 @@ Page(Object.assign({}, Zan.Quantity, Zan.Toast, {
         console.log(res);
       },
       complete: (e) => {
-        // that.audioCtx.setSrc('https://44480041.qcloud.la/user-4136aa7e.mp3')
+        // that.audioCtx.setSrc('https://29957802.qcloud.la/user-4136aa7e.mp3')
         // that.audioCtx.play()
       }
     });

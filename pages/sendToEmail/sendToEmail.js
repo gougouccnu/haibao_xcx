@@ -41,7 +41,7 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定')
           wx.request({
-            url: 'https://44480041.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
+            url: 'https://29957802.qcloud.la/send?email=' + encodeURI(email) + '&audio=' + encodeURI(audioFileName),
             method: 'GET',
             success: (res) => {
 

@@ -1,7 +1,8 @@
 {
   "pages": [
+    
+    "pages/addContact/addContact",
     "pages/index/index",
-    "pages/buyone/buyone",
     "pages/preview/preview",
     "pages/select_voice/select_voice",
     "pages/select_moban/select_moban",
@@ -13,19 +14,6 @@
   ],
   "window": {
     "navigationBarTitleText": "配音神器pro"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/buyone/buyone",
-        "text": "制作配音"
-      }
-    ],
-    "position": "top"
   },
   "debug": false
 }

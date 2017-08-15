@@ -49,7 +49,7 @@ Page({
 
                     //发起网络请求
                     wx.request({
-                        url: 'https://29957802.qcloud.la/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+                      url: 'https://93206388.qcloud.la/jscode2session?appid=wx33c3bf81331603a2&jscode=' + res.code + '&grant_type=authorization_code',
                         //url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
                         success: function(response) {
                             console.log(response.data.openid);
@@ -57,7 +57,7 @@ Page({
                                 //统一下单接口对接
                                 wx.request({
                                     //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
-                                    url: 'https://29957802.qcloud.la/wxpay?openid=' + response.data.openid,
+                                  url: 'https://93206388.qcloud.la/wxpay?openid=' + response.data.openid,
 
                                     success: function(res) {
 
@@ -79,6 +79,8 @@ Page({
                                                     });
                                                 },
                                                 fail: function(res) {
+                                                    console.log('request pay fail.....');
+                                                    console.log(res);
                                                     wx.showToast({
                                                         title: '已取消支付',
                                                         icon: 'success'

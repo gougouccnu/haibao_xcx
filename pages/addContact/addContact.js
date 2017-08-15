@@ -15,14 +15,12 @@ function getCityArray(address3Json, selectedArea) {
 
 Page({
   data: {
-    nameInputValue: '',
-    phoneInputValue: '',
-    areaRange: [],
-    areaIndex: 0,
-    cityIndex: 0,
-    cityRange: ['选择城市'],
-    streetIndex: 0,
-    streetRange: ['选择地区']
+    imgUrls: [
+      '../../resources/pic/1.jpg',
+      '../../resources/pic/2.jpg',
+      '../../resources/pic/3.jpg',
+      '../../resources/pic/4.jpg'
+    ]
   },
 
   onLoad: function (options) {

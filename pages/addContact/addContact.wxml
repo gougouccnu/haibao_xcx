@@ -1,64 +1,36 @@
-<view class="container">
-
-  <view class="zan-form">
-    <view class="zan-cell zan-form__item">
-      <text class="zan-form__title">收货人</text>
-      <input
-        class="zan-form__input zan-cell__bd"
-        placeholder="请输入姓名"
-        value="{{ nameInputValue }}"
-      />
+<view class="page">
+    <!--view class="page__hd">
+        <text class="page__title">swiper</text>
+        <text class="page__desc">swiper</text>
+    </view-->
+    <view style="height: 600px;">
+        <!--view class="section section_gap swiper"-->
+        <view style="height: 500px;">
+            <swiper style="height: 600px;">
+                <block wx:for="{{imgUrls}}">
+                  <swiper-item>
+                    <image src="{{item}}" mode="scaleToFill" style="width:375px; height: 600px;"/>
+                  </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <!--view class="btn-area">
+            <button type="default" bindtap="changeIndicatorDots">indicator-dots</button>
+            <button type="default" bindtap="changeVertical">{{vertical?'horizontal':'vertical'}}</button>
+            <button type="default" bindtap="changeAutoplay">autoplay</button>
+        </view>
+        <slider bindchange="durationChange" value="{{duration}}" show-value min="500" max="2000"/>
+        <view class="section__title">duration</view>
+        <slider bindchange="intervalChange" value="{{interval}}" show-value min="2000" max="10000"/>
+        <view class="section__title">interval</view-->
     </view>
-    <view class="zan-cell zan-form__item">
-      <text class="zan-form__title">联系电话</text>
-      <input
-        class="zan-form__input zan-cell__bd"
-        type="number"
-        maxlength="20"
-        placeholder="手机或固定电话"
-        value="{{ phoneInputValue }}"
-      />
-    </view>
-    <view class="zan-cell zan-form__item zan-cell--last-child">
-      <text class="zan-form__title">收货地区</text>
-      <view class="zan-form__input zan-cell__bd">
-        <picker
-          mode="selector"
-          range="{{ areaRange }}"
-          value="{{ areaIndex }}"
-          bindchange="onAreaChange"
-        >
-          {{ areaRange[areaIndex] }}
-        </picker>
-      </view>
-
-      <view class="zan-form__input zan-cell__bd">
-        <picker
-          mode="selector"
-          range="{{ cityRange }}"
-          value="{{ cityIndex }}"
-          bindchange="onCityChange"
-        >
-          {{ cityRange[cityIndex] }}
-        </picker>
-      </view>
-
-      <view class="zan-form__input zan-cell__bd">
-        <picker
-          mode="selector"
-          range="{{ streetRange }}"
-          value="{{ streetIndex }}"
-          bindchange="onStreetChange"
-        >
-          {{ streetRange[streetIndex] }}
-        </picker>
-      </view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <!--button class="zan-btn zan-btn--large zan-btn--primary" bindtap="saveContact">保存</button-->
-    <view class="zan-cell__bd" bindtap="saveContact">保存</view>
-  </view>
-
 </view>
+
+
+  <!--swiper width="355px" height="350px">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355px" height="350px"/>
+    </swiper-item>
+  </block>
+  </swiper-->

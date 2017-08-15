@@ -38,10 +38,19 @@ Page({
         wx.login({
             success: function(res) {
                 if (res.code) {
+
+                  wx.showLoading({
+                    title: '请求中',
+                  })
+
+                  setTimeout(function () {
+                    wx.hideLoading()
+                  }, 5000)
+
                     //发起网络请求
                     wx.request({
-                        //url: 'https://29957802.qcloud.la/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
-                        url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+                        url: 'https://29957802.qcloud.la/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+                        //url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
                         success: function(response) {
                             console.log(response.data.openid);
                             if (response.data.openid) {
@@ -51,6 +60,9 @@ Page({
                                     url: 'https://29957802.qcloud.la/wxpay?openid=' + response.data.openid,
 
                                     success: function(res) {
+
+                                        wx.hideLoading();
+
                                         console.log('request success');
                                         console.log(res.data);
                                         if (res.data.result_code === 'SUCCESS') {

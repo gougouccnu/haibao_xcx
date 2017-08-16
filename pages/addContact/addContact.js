@@ -4,6 +4,9 @@ var area, city, street, cityRange, streetRange;
 var address3Json = {};
 var selectedArea;
 
+const IS_PAYED_KEY = "isPayed";
+const LAST_ITEM = 4;
+
 function getCityArray(address3Json, selectedArea) {
   var cityArray = [];
   for(var key in address3Json[selectedArea]) {
@@ -21,6 +24,107 @@ Page({
       '../../resources/pic/3.jpg',
       '../../resources/pic/4.jpg'
     ]
+  },
+  pay: function () {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+
+          wx.showLoading({
+            title: '请求中',
+          })
+
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 5000)
+
+          //发起网络请求
+          wx.request({
+            url: 'https://93206388.qcloud.la/jscode2session?appid=wx33c3bf81331603a2&jscode=' + res.code + '&grant_type=authorization_code',
+            //url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+            success: function (response) {
+              console.log(response.data.openid);
+              if (response.data.openid) {
+                //统一下单接口对接
+                wx.request({
+                  //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?openid=' + response.data.openid,
+
+                  success: function (res) {
+
+                    wx.hideLoading();
+
+                    console.log('request success');
+                    console.log(res.data);
+                    if (res.data.result_code === 'SUCCESS') {
+                      wx.requestPayment({
+                        timeStamp: res.data.timestamp,
+                        nonceStr: res.data.nonceStr,
+                        package: res.data.package,
+                        signType: 'MD5',
+                        paySign: res.data.paySign,
+                        success: function (res) {
+                          wx.showToast({
+                            title: '支付成功,感谢',
+                            icon: 'success'
+                          });
+
+                          wx.setStorageSync(IS_PAYED_KEY, true);
+
+                          wx.navigateTo({
+                            url: '/pages/more/more',
+                          })
+                        },
+                        fail: function (res) {
+                          console.log('request pay fail.....');
+                          console.log(res);
+                          wx.showToast({
+                            title: '已取消支付',
+                            icon: 'success'
+                          });
+                        },
+                        complete: function () {
+
+                        }
+                      });
+                    } else {
+                      console.log('before pay fail.');
+                    }
+                  },
+                  fail: function () {
+                    console.log('request fail');
+                  },
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  complete: function () {
+                    console.log('complete');
+                  }
+                });
+              } else {
+                console.log('request openid fail!');
+              }
+            },
+            fail: function (res) {
+              console.log('request fail.');
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+  },
+  swiperChange: function(e) {
+    console.log(e.detail);
+    if(e.detail.current === LAST_ITEM) {
+      var isPayed = wx.getStorageSync(IS_PAYED_KEY);
+      if(isPayed === true) {
+        wx.navigateTo({
+          url: '/pages/more/more',
+        })
+      }
+    }
   },
 
   onLoad: function (options) {

@@ -3,14 +3,7 @@
     
     "pages/addContact/addContact",
     "pages/index/index",
-    "pages/preview/preview",
-    "pages/select_voice/select_voice",
-    "pages/select_moban/select_moban",
-    "pages/select_speed/select_speed",
-    "pages/share/share",
-    "pages/sendToEmail/sendToEmail",
-    "pages/shareAddr/shareAddr",
-    "pages/about/about"
+    "pages/more/more"
   ],
   "window": {
     "navigationBarTitleText": "配音神器pro"

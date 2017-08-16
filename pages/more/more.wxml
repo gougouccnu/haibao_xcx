@@ -6,17 +6,12 @@
     <view style="height: 600px;">
         <!--view class="section section_gap swiper"-->
         <view style="height: 500px;">
-            <swiper style="height: 600px;" bindchange="swiperChange">
+            <swiper style="height: 600px;">
                 <block wx:for="{{imgUrls}}">
                   <swiper-item>
                     <image src="{{item}}" mode="scaleToFill" style="width:375px; height: 600px;"/>
                   </swiper-item>
                 </block>
-                <swiper-item>
-                        <view class="swiper-item bc_gray">
-                          <button class="zan-btn zan-btn--primary"bindtap="pay" >支付5元，查看更多</button>
-                        </view>
-                </swiper-item>
             </swiper>
         </view>
         <!--view class="btn-area">

@@ -201,6 +201,19 @@ Page({
         areaRange: area
       })
     }
+
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+
   },
 
   onShow: function () {

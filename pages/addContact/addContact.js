@@ -20,8 +20,10 @@ Page({
   data: {   
     imgUrls: [
       '../../resources/pic/1.jpg',
-      '../../resources/pic/2.jpg',
-      ]
+      '../../resources/pic/2.jpg'
+      ],
+    current: 0,
+    isPayed: false
   },
   longtap: function () {
     console.log('longtap event');
@@ -63,6 +65,7 @@ Page({
 
   },
   pay: function () {
+    var that = this;
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -108,9 +111,21 @@ Page({
 
                           wx.setStorageSync(IS_PAYED_KEY, true);
 
-                          wx.navigateTo({
-                            url: '/pages/more/more',
+                          // wx.navigateTo({
+                          //   url: '/pages/more/more',
+                          // })
+
+                          that.setData({
+                            isPayed: true,
+                            imgUrls: [
+                              '../../resources/pic/1.jpg',
+                              '../../resources/pic/2.jpg',
+                              '../../resources/pic/3.jpg',
+                              '../../resources/pic/4.jpg'
+                            ],
+                            current: 2
                           })
+                          
                         },
                         fail: function (res) {
                           console.log('request pay fail.....');
@@ -189,6 +204,9 @@ Page({
   },
 
   onShow: function () {
+    this.setData({
+      current: 1
+    });
   },
 
   onAreaChange: function (e) {

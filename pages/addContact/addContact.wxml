@@ -5,14 +5,15 @@
     </view-->
         <!--view class="section section_gap swiper"-->
        
-            <swiper class="userinfo" style="height: 568px;" bindchange="swiperChange" bindlongtap="longtap">
+            <swiper current="0" class="userinfo" style="height: 568px;" bindlongtap="longtap">
                 <block wx:for="{{imgUrls}}">
                   <swiper-item>
                     <image src="{{item}}" mode="aspectFit" style="width:100%; height: 100%;"/>
                   </swiper-item>
                 </block>
                 <swiper-item>
-                     <view class="userinfo">
+                    <image wx:if="{{isPayed}}" src="../../resources/pic/2.jpg" mode="aspectFit" style="width:100%; height: 100%;"/>
+                    <view  wx:else class="userinfo">
                         <button class="usermotto" size="default" type="primary" bindtap="pay">支付8元，查看更多裂变海报</button>
                      </view>
                 </swiper-item>

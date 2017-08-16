@@ -3,23 +3,21 @@
         <text class="page__title">swiper</text>
         <text class="page__desc">swiper</text>
     </view-->
-    <view style="height: 600px;">
         <!--view class="section section_gap swiper"-->
-        <view style="height: 500px;">
-            <swiper style="height: 600px;" bindchange="swiperChange">
+       
+            <swiper class="userinfo" style="height: 568px;" bindchange="swiperChange">
                 <block wx:for="{{imgUrls}}">
                   <swiper-item>
-                    <image src="{{item}}" mode="scaleToFill" style="width:375px; height: 600px;"/>
+                    <image src="{{item}}" mode="aspectFit" style="width:100%; height: 100%;"/>
                   </swiper-item>
                 </block>
                 <swiper-item>
                      <view class="userinfo">
-                       
-                        <button class="usermotto" size="default" type="primary" bindtap="pay">支付5元，查看更多</button>
+                        <button class="usermotto" size="default" type="primary" bindtap="pay">支付8元，查看更多裂变海报</button>
                      </view>
                 </swiper-item>
             </swiper>
-        </view>
+     
         <!--view class="btn-area">
             <button type="default" bindtap="changeIndicatorDots">indicator-dots</button>
             <button type="default" bindtap="changeVertical">{{vertical?'horizontal':'vertical'}}</button>
@@ -29,7 +27,7 @@
         <view class="section__title">duration</view>
         <slider bindchange="intervalChange" value="{{interval}}" show-value min="2000" max="10000"/>
         <view class="section__title">interval</view-->
-    </view>
+
 </view>
 
 

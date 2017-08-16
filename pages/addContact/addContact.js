@@ -5,7 +5,7 @@ var address3Json = {};
 var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
-const LAST_ITEM = 4;
+const LAST_ITEM = 2;
 
 function getCityArray(address3Json, selectedArea) {
   var cityArray = [];
@@ -20,10 +20,8 @@ Page({
   data: {   
     imgUrls: [
       '../../resources/pic/1.jpg',
-      //'../../resources/pic/2.jpg',
-      //'../../resources/pic/3.jpg',
-      '../../resources/pic/4.jpg'
-    ]
+      '../../resources/pic/2.jpg',
+      ]
   },
   pay: function () {
     wx.login({

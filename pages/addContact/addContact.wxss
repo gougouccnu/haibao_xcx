@@ -1,6 +1,6 @@
 .swiper-item{
     display: block;
-    height: 350px;
+    height: 100%;
 }
 page {
   background-color: #fbf9fe;
@@ -239,5 +239,5 @@ checkbox, radio{
 }
 
 .usermotto {
-  margin-top: 50%;
+  margin-top: 60%;
 }

@@ -23,6 +23,45 @@ Page({
       '../../resources/pic/2.jpg',
       ]
   },
+  longtap: function () {
+    console.log('longtap event');
+    wx.showActionSheet({
+      itemList: ['保存到手机'],
+      success: function (res) {
+        console.log(res.tapIndex)
+
+        wx.getImageInfo({
+          src: '/resources/pic/1.jpg',
+          success: function (res) {
+            console.log(res.width)
+            console.log(res.height)
+          },
+          fail: function (res) {
+            console.log('get image file info fail');
+          }
+        })
+        
+        wx.saveImageToPhotosAlbum({
+          filePath: '/resources/pic/1.jpg',
+          success: function(res) {
+            console.log('save success.');
+            wx.showToast({
+              title: '已保存',
+              icon: 'success',
+              duration: 1000
+            })
+          },
+          fail: function(res) {
+            console.log(res);
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+
+  },
   pay: function () {
     wx.login({
       success: function (res) {
@@ -197,5 +236,12 @@ Page({
     wx.navigateTo({
       url: '../contacts/contacts'
     })
+  },
+  // added by lsw 
+  onShareAppMessage: function () {
+    return {
+      title: '裂变海报大全',
+      path: '/pages/addContact/addContact'
+    }
   }
 });

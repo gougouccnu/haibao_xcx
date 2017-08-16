@@ -5,7 +5,7 @@ var address3Json = {};
 var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
-const LAST_ITEM = 2;
+const ITEMS_BEFORE_PAY = 2;
 
 function getCityArray(address3Json, selectedArea) {
   var cityArray = [];
@@ -19,8 +19,8 @@ function getCityArray(address3Json, selectedArea) {
 Page({
   data: {   
     imgUrls: [
-      '../../resources/pic/1.jpg',
-      '../../resources/pic/2.jpg'
+      'https://93206388.qcloud.la/1.jpg',
+      'https://93206388.qcloud.la/2.jpg'
       ],
     current: 0,
     isPayed: false
@@ -30,33 +30,63 @@ Page({
     wx.showActionSheet({
       itemList: ['保存到手机'],
       success: function (res) {
-        console.log(res.tapIndex)
+        // tapIndex starts from 0
+        console.log(res.tapIndex);
 
-        wx.getImageInfo({
-          src: '/resources/pic/1.jpg',
-          success: function (res) {
-            console.log(res.width)
-            console.log(res.height)
-          },
-          fail: function (res) {
-            console.log('get image file info fail');
-          }
-        })
-        
-        wx.saveImageToPhotosAlbum({
-          filePath: '/resources/pic/1.jpg',
+        wx.downloadFile({
+          url: 'https://93206388.qcloud.la/1.jpg',
           success: function(res) {
-            console.log('save success.');
-            wx.showToast({
-              title: '已保存',
-              icon: 'success',
-              duration: 1000
-            })
-          },
-          fail: function(res) {
-            console.log(res);
+            console.log(res.tempFilePath);
+            var tmpPath = res.tempFilePath;
+
+            wx.authorize({
+              scope: 'scope.writePhotosAlbum',
+              success: function () {
+                // 用户已经同意小程序使用功能，后续调用 wx.startRecord 接口不会弹窗询问
+                wx.saveImageToPhotosAlbum({
+                  filePath: tmpPath,
+                  success: function (res) {
+                    console.log('save success.');
+                    wx.showToast({
+                      title: '已保存',
+                      icon: 'success',
+                      duration: 1000
+                    })
+                  },
+                  fail: function (res) {
+                    console.log(res);
+                    wx.showToast({
+                      title: '保存图片失败',
+                      icon: 'success',
+                      duration: 1000
+                    })
+                  }
+                })
+              },
+              fail: function (res) {
+                console.log(res);
+                wx.showToast({
+                  title: '请求保存图片权限失败',
+                  icon: 'success',
+                  duration: 1000
+                })
+              }
+            });
           }
-        })
+        });
+
+        // wx.getImageInfo({
+        //   src: '/resources/pic/1.jpg',
+        //   success: function (res) {
+        //     console.log(res.width);
+            
+        //   },
+        //   fail: function (res) {
+        //     console.log('get image file info fail');
+        //   }
+        // })
+        
+        
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -118,12 +148,12 @@ Page({
                           that.setData({
                             isPayed: true,
                             imgUrls: [
-                              '../../resources/pic/1.jpg',
-                              '../../resources/pic/2.jpg',
-                              '../../resources/pic/3.jpg',
-                              '../../resources/pic/4.jpg'
+                              'https://93206388.qcloud.la/1.jpg',
+                              'https://93206388.qcloud.la/2.jpg',
+                              'https://93206388.qcloud.la/3.jpg',
+                              'https://93206388.qcloud.la/4.jpg'
                             ],
-                            current: 2
+                            current: ITEMS_BEFORE_PAY
                           })
                           
                         },
@@ -169,7 +199,7 @@ Page({
   },
   swiperChange: function(e) {
     console.log(e.detail);
-    if(e.detail.current === LAST_ITEM) {
+    if (e.detail.current === ITEMS_BEFORE_PAY) {
       var isPayed = wx.getStorageSync(IS_PAYED_KEY);
       if(isPayed === true) {
         wx.navigateTo({
@@ -217,9 +247,7 @@ Page({
   },
 
   onShow: function () {
-    this.setData({
-      current: 1
-    });
+
   },
 
   onAreaChange: function (e) {

@@ -217,3 +217,27 @@ checkbox, radio{
 .section__ctn{
 
 }
+
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  margin: 10rpx;
+  align-items: center;
+  height: 100%
+}
+
+.userinfo-avatar {
+  width: 300px;
+  height: 600px;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 50%;
+}

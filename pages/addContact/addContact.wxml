@@ -13,9 +13,10 @@
                   </swiper-item>
                 </block>
                 <swiper-item>
-                        <view class="swiper-item bc_gray">
-                          <button class="zan-btn zan-btn--primary"bindtap="pay" >支付5元，查看更多</button>
-                        </view>
+                     <view class="userinfo">
+                       
+                        <button class="usermotto" size="default" type="primary" bindtap="pay">支付5元，查看更多</button>
+                     </view>
                 </swiper-item>
             </swiper>
         </view>

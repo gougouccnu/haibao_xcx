@@ -17,11 +17,11 @@ function getCityArray(address3Json, selectedArea) {
 }
 
 Page({
-  data: {
+  data: {   
     imgUrls: [
       '../../resources/pic/1.jpg',
-      '../../resources/pic/2.jpg',
-      '../../resources/pic/3.jpg',
+      //'../../resources/pic/2.jpg',
+      //'../../resources/pic/3.jpg',
       '../../resources/pic/4.jpg'
     ]
   },

@@ -5,7 +5,9 @@ var address3Json = {};
 var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
-const ITEMS_BEFORE_PAY = 2;
+const ITEMS_BEFORE_PAY = 14;
+
+var swiperCurrentIndex = 0;
 
 function getCityArray(address3Json, selectedArea) {
   var cityArray = [];
@@ -19,14 +21,26 @@ function getCityArray(address3Json, selectedArea) {
 Page({
   data: {   
     imgUrls: [
+      'https://93206388.qcloud.la/0.jpg',
       'https://93206388.qcloud.la/1.jpg',
-      'https://93206388.qcloud.la/2.jpg'
+      'https://93206388.qcloud.la/2.jpg',
+      'https://93206388.qcloud.la/3.jpg',
+      'https://93206388.qcloud.la/4.jpg',
+      'https://93206388.qcloud.la/5.jpg',
+      'https://93206388.qcloud.la/6.jpg',
+      'https://93206388.qcloud.la/7.jpg',
+      'https://93206388.qcloud.la/8.jpg',
+      'https://93206388.qcloud.la/9.jpg',
+      'https://93206388.qcloud.la/10.jpg',
+      'https://93206388.qcloud.la/11.jpg',
+      'https://93206388.qcloud.la/12.jpg',
+      'https://93206388.qcloud.la/13.jpg'
       ],
     current: 0,
     isPayed: false
   },
   longtap: function () {
-    console.log('longtap event');
+    console.log(this.data.current);
     wx.showActionSheet({
       itemList: ['保存到手机'],
       success: function (res) {
@@ -34,7 +48,7 @@ Page({
         console.log(res.tapIndex);
 
         wx.downloadFile({
-          url: 'https://93206388.qcloud.la/1.jpg',
+          url: 'https://93206388.qcloud.la/' + swiperCurrentIndex.toString() + '.jpg',
           success: function(res) {
             console.log(res.tempFilePath);
             var tmpPath = res.tempFilePath;
@@ -118,7 +132,7 @@ Page({
                 //统一下单接口对接
                 wx.request({
                   //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
-                  url: 'https://93206388.qcloud.la/wxpay?openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=660&openid=' + response.data.openid,
 
                   success: function (res) {
 
@@ -148,10 +162,39 @@ Page({
                           that.setData({
                             isPayed: true,
                             imgUrls: [
+                              'https://93206388.qcloud.la/0.jpg',
                               'https://93206388.qcloud.la/1.jpg',
                               'https://93206388.qcloud.la/2.jpg',
                               'https://93206388.qcloud.la/3.jpg',
-                              'https://93206388.qcloud.la/4.jpg'
+                              'https://93206388.qcloud.la/4.jpg',
+                              'https://93206388.qcloud.la/5.jpg',
+                              'https://93206388.qcloud.la/6.jpg',
+                              'https://93206388.qcloud.la/7.jpg',
+                              'https://93206388.qcloud.la/8.jpg',
+                              'https://93206388.qcloud.la/9.jpg',
+                              'https://93206388.qcloud.la/10.jpg',
+                              'https://93206388.qcloud.la/11.jpg',
+                              'https://93206388.qcloud.la/12.jpg',
+                              'https://93206388.qcloud.la/13.jpg',
+                              'https://93206388.qcloud.la/14.jpg',
+                              'https://93206388.qcloud.la/15.jpg',
+                              'https://93206388.qcloud.la/16.jpg',
+                              'https://93206388.qcloud.la/17.jpg',
+                              'https://93206388.qcloud.la/18.jpg',
+                              'https://93206388.qcloud.la/19.jpg',
+                              'https://93206388.qcloud.la/20.jpg',
+                              'https://93206388.qcloud.la/21.jpg',
+                              'https://93206388.qcloud.la/22.jpg',
+                              'https://93206388.qcloud.la/23.jpg',
+                              'https://93206388.qcloud.la/24.jpg',
+                              'https://93206388.qcloud.la/25.jpg',
+                              'https://93206388.qcloud.la/26.jpg',
+                              'https://93206388.qcloud.la/27.jpg',
+                              'https://93206388.qcloud.la/28.jpg',
+                              'https://93206388.qcloud.la/29.jpg',
+                              'https://93206388.qcloud.la/30.jpg',
+                              'https://93206388.qcloud.la/31.jpg',
+                              'https://93206388.qcloud.la/32.jpg'
                             ],
                             current: ITEMS_BEFORE_PAY
                           })
@@ -199,14 +242,15 @@ Page({
   },
   swiperChange: function(e) {
     console.log(e.detail);
-    if (e.detail.current === ITEMS_BEFORE_PAY) {
-      var isPayed = wx.getStorageSync(IS_PAYED_KEY);
-      if(isPayed === true) {
-        wx.navigateTo({
-          url: '/pages/more/more',
-        })
-      }
-    }
+    // if (e.detail.current === ITEMS_BEFORE_PAY) {
+    //   var isPayed = wx.getStorageSync(IS_PAYED_KEY);
+    //   if(isPayed === true) {
+    //     wx.navigateTo({
+    //       url: '/pages/more/more',
+    //     })
+    //   }
+    // }
+    swiperCurrentIndex = e.detail.current;
   },
 
   onLoad: function (options) {
@@ -237,12 +281,66 @@ Page({
       if (value) {
         // Do something with return value
         this.setData({
-          isPayed: true
+          isPayed: true,
+          imgUrls: [
+            'https://93206388.qcloud.la/0.jpg',
+            'https://93206388.qcloud.la/1.jpg',
+            'https://93206388.qcloud.la/2.jpg',
+            'https://93206388.qcloud.la/3.jpg',
+            'https://93206388.qcloud.la/4.jpg',
+            'https://93206388.qcloud.la/5.jpg',
+            'https://93206388.qcloud.la/6.jpg',
+            'https://93206388.qcloud.la/7.jpg',
+            'https://93206388.qcloud.la/8.jpg',
+            'https://93206388.qcloud.la/9.jpg',
+            'https://93206388.qcloud.la/10.jpg',
+            'https://93206388.qcloud.la/11.jpg',
+            'https://93206388.qcloud.la/12.jpg',
+            'https://93206388.qcloud.la/13.jpg',
+            'https://93206388.qcloud.la/14.jpg',
+            'https://93206388.qcloud.la/15.jpg',
+            'https://93206388.qcloud.la/16.jpg',
+            'https://93206388.qcloud.la/17.jpg',
+            'https://93206388.qcloud.la/18.jpg',
+            'https://93206388.qcloud.la/19.jpg',
+            'https://93206388.qcloud.la/20.jpg',
+            'https://93206388.qcloud.la/21.jpg',
+            'https://93206388.qcloud.la/22.jpg',
+            'https://93206388.qcloud.la/23.jpg',
+            'https://93206388.qcloud.la/24.jpg',
+            'https://93206388.qcloud.la/25.jpg',
+            'https://93206388.qcloud.la/26.jpg',
+            'https://93206388.qcloud.la/27.jpg',
+            'https://93206388.qcloud.la/28.jpg',
+            'https://93206388.qcloud.la/29.jpg',
+            'https://93206388.qcloud.la/30.jpg',
+            'https://93206388.qcloud.la/31.jpg',
+            'https://93206388.qcloud.la/32.jpg'
+          ],
         });
       }
     } catch (e) {
       // Do something when catch error
     }
+
+    wx.showModal({
+      title: '提示',
+      content: '长按图片可保存',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+    // wx.showToast({
+    //   title: '长按图片可保存',
+    //   icon: 'success',
+    //   duration: 2000
+    // })
 
   },
 

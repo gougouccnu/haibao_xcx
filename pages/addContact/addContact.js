@@ -6,6 +6,19 @@ var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
 const ITEMS_BEFORE_PAY = 14;
+const BASE_URL = 'https://93206388.qcloud.la/';
+
+function getImageUrlArray(length) {
+  var resultArray = [];
+
+  for (var i=0; i<length; i++) {
+    resultArray.push(BASE_URL + i.toString() + '.jpg');
+  }
+
+  return resultArray;
+}
+
+var imageUrlArray = getImageUrlArray(50);
 
 var swiperCurrentIndex = 0;
 
@@ -20,25 +33,7 @@ function getCityArray(address3Json, selectedArea) {
 
 Page({
   data: {   
-    imgUrls: [
-      '../../resources/pic/0.jpg',
-      '../../resources/pic/1.jpg',
-      '../../resources/pic/2.jpg',
-      //'https://93206388.qcloud.la/0.jpg',
-      //'https://93206388.qcloud.la/1.jpg',
-      //'https://93206388.qcloud.la/2.jpg',
-      'https://93206388.qcloud.la/3.jpg',
-      'https://93206388.qcloud.la/4.jpg',
-      'https://93206388.qcloud.la/5.jpg',
-      'https://93206388.qcloud.la/6.jpg',
-      'https://93206388.qcloud.la/7.jpg',
-      'https://93206388.qcloud.la/8.jpg',
-      'https://93206388.qcloud.la/9.jpg',
-      'https://93206388.qcloud.la/10.jpg',
-      'https://93206388.qcloud.la/11.jpg',
-      'https://93206388.qcloud.la/12.jpg',
-      'https://93206388.qcloud.la/13.jpg'
-      ],
+    imgUrls: [],
     current: 0,
     isPayed: false
   },
@@ -180,44 +175,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: [
-                              '../../resources/pic/0.jpg',
-                              '../../resources/pic/1.jpg',
-                              '../../resources/pic/2.jpg',
-      //'https://93206388.qcloud.la/0.jpg',
-      //'https://93206388.qcloud.la/1.jpg',
-      //'https://93206388.qcloud.la/2.jpg',
-                              'https://93206388.qcloud.la/3.jpg',
-                              'https://93206388.qcloud.la/4.jpg',
-                              'https://93206388.qcloud.la/5.jpg',
-                              'https://93206388.qcloud.la/6.jpg',
-                              'https://93206388.qcloud.la/7.jpg',
-                              'https://93206388.qcloud.la/8.jpg',
-                              'https://93206388.qcloud.la/9.jpg',
-                              'https://93206388.qcloud.la/10.jpg',
-                              'https://93206388.qcloud.la/11.jpg',
-                              'https://93206388.qcloud.la/12.jpg',
-                              'https://93206388.qcloud.la/13.jpg',
-                              'https://93206388.qcloud.la/14.jpg',
-                              'https://93206388.qcloud.la/15.jpg',
-                              'https://93206388.qcloud.la/16.jpg',
-                              'https://93206388.qcloud.la/17.jpg',
-                              'https://93206388.qcloud.la/18.jpg',
-                              'https://93206388.qcloud.la/19.jpg',
-                              'https://93206388.qcloud.la/20.jpg',
-                              'https://93206388.qcloud.la/21.jpg',
-                              'https://93206388.qcloud.la/22.jpg',
-                              'https://93206388.qcloud.la/23.jpg',
-                              'https://93206388.qcloud.la/24.jpg',
-                              'https://93206388.qcloud.la/25.jpg',
-                              'https://93206388.qcloud.la/26.jpg',
-                              'https://93206388.qcloud.la/27.jpg',
-                              'https://93206388.qcloud.la/28.jpg',
-                              'https://93206388.qcloud.la/29.jpg',
-                              'https://93206388.qcloud.la/30.jpg',
-                              'https://93206388.qcloud.la/31.jpg',
-                              'https://93206388.qcloud.la/32.jpg'
-                            ],
+                            imgUrls: imageUrlArray.slice(0,32),
                             current: ITEMS_BEFORE_PAY
                           })
                           
@@ -298,54 +256,24 @@ Page({
       })
     }
 
+    console.log(imageUrlArray);
+
+    this.setData({
+      imgUrls: imageUrlArray.slice(0, 13)
+    });
+
     try {
       var value = wx.getStorageSync(IS_PAYED_KEY)
       if (value) {
         // Do something with return value
         this.setData({
           isPayed: true,
-          imgUrls: [
-            '../../resources/pic/0.jpg',
-            '../../resources/pic/1.jpg',
-            '../../resources/pic/2.jpg',
-      //'https://93206388.qcloud.la/0.jpg',
-      //'https://93206388.qcloud.la/1.jpg',
-      //'https://93206388.qcloud.la/2.jpg',
-            'https://93206388.qcloud.la/3.jpg',
-            'https://93206388.qcloud.la/4.jpg',
-            'https://93206388.qcloud.la/5.jpg',
-            'https://93206388.qcloud.la/6.jpg',
-            'https://93206388.qcloud.la/7.jpg',
-            'https://93206388.qcloud.la/8.jpg',
-            'https://93206388.qcloud.la/9.jpg',
-            'https://93206388.qcloud.la/10.jpg',
-            'https://93206388.qcloud.la/11.jpg',
-            'https://93206388.qcloud.la/12.jpg',
-            'https://93206388.qcloud.la/13.jpg',
-            'https://93206388.qcloud.la/14.jpg',
-            'https://93206388.qcloud.la/15.jpg',
-            'https://93206388.qcloud.la/16.jpg',
-            'https://93206388.qcloud.la/17.jpg',
-            'https://93206388.qcloud.la/18.jpg',
-            'https://93206388.qcloud.la/19.jpg',
-            'https://93206388.qcloud.la/20.jpg',
-            'https://93206388.qcloud.la/21.jpg',
-            'https://93206388.qcloud.la/22.jpg',
-            'https://93206388.qcloud.la/23.jpg',
-            'https://93206388.qcloud.la/24.jpg',
-            'https://93206388.qcloud.la/25.jpg',
-            'https://93206388.qcloud.la/26.jpg',
-            'https://93206388.qcloud.la/27.jpg',
-            'https://93206388.qcloud.la/28.jpg',
-            'https://93206388.qcloud.la/29.jpg',
-            'https://93206388.qcloud.la/30.jpg',
-            'https://93206388.qcloud.la/31.jpg',
-            'https://93206388.qcloud.la/32.jpg'
-          ],
+          imgUrls: imageUrlArray.slice(0, 32),
         });
       }
     } catch (e) {
       // Do something when catch error
+      console.log('get storage fail');
     }
 
     wx.showModal({

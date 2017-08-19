@@ -1,7 +1,8 @@
 {
   "pages": [
     
-    "pages/addContact/addContact"
+    "pages/addContact/addContact",
+    "pages/contact/contact"
   ],
   "window": {
     "navigationBarTitleText": "裂变海报大全"

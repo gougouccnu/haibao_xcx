@@ -45,52 +45,68 @@ Page({
   longtap: function () {
     console.log(this.data.current);
     wx.showActionSheet({
-      itemList: ['保存到手机'],
+      itemList: ['保存到手机',
+                 '联系客服'
+                ],
       success: function (res) {
         // tapIndex starts from 0
         console.log(res.tapIndex);
 
-        wx.downloadFile({
-          url: 'https://93206388.qcloud.la/' + swiperCurrentIndex.toString() + '.jpg',
-          success: function(res) {
-            console.log(res.tempFilePath);
-            var tmpPath = res.tempFilePath;
+        switch (res.tapIndex)
+        {
+          case 0:
+            wx.downloadFile({
+              url: 'https://93206388.qcloud.la/' + swiperCurrentIndex.toString() + '.jpg',
+              success: function (res) {
+                console.log(res.tempFilePath);
+                var tmpPath = res.tempFilePath;
 
-            wx.authorize({
-              scope: 'scope.writePhotosAlbum',
-              success: function () {
-                // 用户已经同意小程序使用功能，后续调用 wx.startRecord 接口不会弹窗询问
-                wx.saveImageToPhotosAlbum({
-                  filePath: tmpPath,
-                  success: function (res) {
-                    console.log('save success.');
-                    wx.showToast({
-                      title: '已保存',
-                      icon: 'success',
-                      duration: 1000
+                wx.authorize({
+                  scope: 'scope.writePhotosAlbum',
+                  success: function () {
+                    // 用户已经同意小程序使用功能，后续调用 wx.startRecord 接口不会弹窗询问
+                    wx.saveImageToPhotosAlbum({
+                      filePath: tmpPath,
+                      success: function (res) {
+                        console.log('save success.');
+                        wx.showToast({
+                          title: '已保存',
+                          icon: 'success',
+                          duration: 1000
+                        })
+                      },
+                      fail: function (res) {
+                        console.log(res);
+                        wx.showToast({
+                          title: '保存图片失败',
+                          icon: 'success',
+                          duration: 1000
+                        })
+                      }
                     })
                   },
                   fail: function (res) {
                     console.log(res);
                     wx.showToast({
-                      title: '保存图片失败',
+                      title: '请求保存图片权限失败',
                       icon: 'success',
                       duration: 1000
                     })
                   }
-                })
-              },
-              fail: function (res) {
-                console.log(res);
-                wx.showToast({
-                  title: '请求保存图片权限失败',
-                  icon: 'success',
-                  duration: 1000
-                })
+                });
               }
             });
-          }
-        });
+            case 1:
+              wx.navigateTo({
+                url: '../../pages/contact/contact',
+              })
+            break;
+          default:
+            
+        }
+
+
+        
 
         // wx.getImageInfo({
         //   src: '/resources/pic/1.jpg',

@@ -21,9 +21,12 @@ function getCityArray(address3Json, selectedArea) {
 Page({
   data: {   
     imgUrls: [
-      'https://93206388.qcloud.la/0.jpg',
-      'https://93206388.qcloud.la/1.jpg',
-      'https://93206388.qcloud.la/2.jpg',
+      '../../resources/pic/0.jpg',
+      '../../resources/pic/1.jpg',
+      '../../resources/pic/2.jpg',
+      //'https://93206388.qcloud.la/0.jpg',
+      //'https://93206388.qcloud.la/1.jpg',
+      //'https://93206388.qcloud.la/2.jpg',
       'https://93206388.qcloud.la/3.jpg',
       'https://93206388.qcloud.la/4.jpg',
       'https://93206388.qcloud.la/5.jpg',
@@ -162,9 +165,12 @@ Page({
                           that.setData({
                             isPayed: true,
                             imgUrls: [
-                              'https://93206388.qcloud.la/0.jpg',
-                              'https://93206388.qcloud.la/1.jpg',
-                              'https://93206388.qcloud.la/2.jpg',
+                              '../../resources/pic/0.jpg',
+                              '../../resources/pic/1.jpg',
+                              '../../resources/pic/2.jpg',
+      //'https://93206388.qcloud.la/0.jpg',
+      //'https://93206388.qcloud.la/1.jpg',
+      //'https://93206388.qcloud.la/2.jpg',
                               'https://93206388.qcloud.la/3.jpg',
                               'https://93206388.qcloud.la/4.jpg',
                               'https://93206388.qcloud.la/5.jpg',
@@ -283,9 +289,12 @@ Page({
         this.setData({
           isPayed: true,
           imgUrls: [
-            'https://93206388.qcloud.la/0.jpg',
-            'https://93206388.qcloud.la/1.jpg',
-            'https://93206388.qcloud.la/2.jpg',
+            '../../resources/pic/0.jpg',
+            '../../resources/pic/1.jpg',
+            '../../resources/pic/2.jpg',
+      //'https://93206388.qcloud.la/0.jpg',
+      //'https://93206388.qcloud.la/1.jpg',
+      //'https://93206388.qcloud.la/2.jpg',
             'https://93206388.qcloud.la/3.jpg',
             'https://93206388.qcloud.la/4.jpg',
             'https://93206388.qcloud.la/5.jpg',
@@ -325,7 +334,8 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '长按图片可保存',
+      confirmText: '朕知道了',
+      content: '左右滑动查看海报,长按海报可保存',
       showCancel: false,
       success: function (res) {
         if (res.confirm) {

@@ -6,7 +6,16 @@ var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
 const ITEMS_BEFORE_PAY = 24;
-const ITEMS_AFTER_PAY = 90
+const ITEMS_AFTER_PAY = 90;
+
+
+const IS_PAYED_KEY_S = "isPayed_s";
+const ITEMS_AFTER_PAY_S = 57;
+
+
+const IS_PAYED_KEY_L = "isPayed_l";
+const ITEMS_AFTER_PAY_L = 123;
+
 //const BASE_URL = 'https://93206388.qcloud.la/';
 const BASE_URL = 'http://o81ljhejf.bkt.clouddn.com/';
 
@@ -25,7 +34,7 @@ function getImageUrlArray(length) {
   return resultArray;
 }
 
-var imageUrlArray = getImageUrlArray(ITEMS_AFTER_PAY);
+var imageUrlArray = getImageUrlArray(ITEMS_AFTER_PAY_L);
 
 var swiperCurrentIndex = 0;
 
@@ -130,6 +139,105 @@ Page({
     })
 
   },
+  pay_s: function () {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+
+          wx.showLoading({
+            title: '请求中',
+          })
+
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 5000)
+
+          //发起网络请求
+          wx.request({
+            url: 'https://93206388.qcloud.la/jscode2session?appid=wx33c3bf81331603a2&jscode=' + res.code + '&grant_type=authorization_code',
+            //url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+            success: function (response) {
+              console.log(response.data.openid);
+              if (response.data.openid) {
+                //统一下单接口对接
+                wx.request({
+                  //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=660&openid=' + response.data.openid,
+
+                  success: function (res) {
+
+                    wx.hideLoading();
+
+                    console.log('request success');
+                    console.log(res.data);
+                    if (res.data.result_code === 'SUCCESS') {
+                      wx.requestPayment({
+                        timeStamp: res.data.timestamp,
+                        nonceStr: res.data.nonceStr,
+                        package: res.data.package,
+                        signType: 'MD5',
+                        paySign: res.data.paySign,
+                        success: function (res) {
+                          wx.showToast({
+                            title: '支付成功,感谢',
+                            icon: 'success'
+                          });
+
+                          wx.setStorageSync(IS_PAYED_KEY_S, true);
+
+                          // wx.navigateTo({
+                          //   url: '/pages/more/more',
+                          // })
+
+                          that.setData({
+                            isPayed: true,
+                            imgUrls: imageUrlArray.slice(0,ITEMS_AFTER_PAY_S),
+                            current: ITEMS_BEFORE_PAY
+                          })
+                          
+                        },
+                        fail: function (res) {
+                          console.log('request pay fail.....');
+                          console.log(res);
+                          wx.showToast({
+                            title: '已取消支付',
+                            icon: 'success'
+                          });
+                        },
+                        complete: function () {
+
+                        }
+                      });
+                    } else {
+                      console.log('before pay fail.');
+                    }
+                  },
+                  fail: function () {
+                    console.log('request fail');
+                  },
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  complete: function () {
+                    console.log('complete');
+                  }
+                });
+              } else {
+                console.log('request openid fail!');
+              }
+            },
+            fail: function (res) {
+              console.log('request fail.');
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+  },
+
   pay: function () {
     var that = this;
     wx.login({
@@ -183,10 +291,109 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: imageUrlArray.slice(0,ITEMS_AFTER_PAY),
+                            imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
                             current: ITEMS_BEFORE_PAY
                           })
-                          
+
+                        },
+                        fail: function (res) {
+                          console.log('request pay fail.....');
+                          console.log(res);
+                          wx.showToast({
+                            title: '已取消支付',
+                            icon: 'success'
+                          });
+                        },
+                        complete: function () {
+
+                        }
+                      });
+                    } else {
+                      console.log('before pay fail.');
+                    }
+                  },
+                  fail: function () {
+                    console.log('request fail');
+                  },
+                  header: {
+                    'content-type': 'application/json'
+                  },
+                  complete: function () {
+                    console.log('complete');
+                  }
+                });
+              } else {
+                console.log('request openid fail!');
+              }
+            },
+            fail: function (res) {
+              console.log('request fail.');
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+  },
+
+  pay_l: function () {
+    var that = this;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+
+          wx.showLoading({
+            title: '请求中',
+          })
+
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 5000)
+
+          //发起网络请求
+          wx.request({
+            url: 'https://93206388.qcloud.la/jscode2session?appid=wx33c3bf81331603a2&jscode=' + res.code + '&grant_type=authorization_code',
+            //url: 'http://localhost:8080/jscode2session?appid=wx9423df5b195336f1&jscode=' + res.code + '&grant_type=authorization_code',
+            success: function (response) {
+              console.log(response.data.openid);
+              if (response.data.openid) {
+                //统一下单接口对接
+                wx.request({
+                  //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=660&openid=' + response.data.openid,
+
+                  success: function (res) {
+
+                    wx.hideLoading();
+
+                    console.log('request success');
+                    console.log(res.data);
+                    if (res.data.result_code === 'SUCCESS') {
+                      wx.requestPayment({
+                        timeStamp: res.data.timestamp,
+                        nonceStr: res.data.nonceStr,
+                        package: res.data.package,
+                        signType: 'MD5',
+                        paySign: res.data.paySign,
+                        success: function (res) {
+                          wx.showToast({
+                            title: '支付成功,感谢',
+                            icon: 'success'
+                          });
+
+                          wx.setStorageSync(IS_PAYED_KEY_L, true);
+
+                          // wx.navigateTo({
+                          //   url: '/pages/more/more',
+                          // })
+
+                          that.setData({
+                            isPayed: true,
+                            imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
+                            current: ITEMS_BEFORE_PAY
+                          })
+
                         },
                         fail: function (res) {
                           console.log('request pay fail.....');
@@ -283,6 +490,35 @@ Page({
       // Do something when catch error
       console.log('get storage fail');
     }
+
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY_S)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true,
+          imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_S),
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('get storage fail');
+    }
+
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY_L)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true,
+          imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('get storage fail');
+    }
+
 
     wx.showModal({
       title: '提示',

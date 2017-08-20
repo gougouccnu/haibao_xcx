@@ -7,13 +7,15 @@ var selectedArea;
 const IS_PAYED_KEY = "isPayed";
 const ITEMS_BEFORE_PAY = 24;
 const ITEMS_AFTER_PAY = 90
-const BASE_URL = 'https://93206388.qcloud.la/';
+//const BASE_URL = 'https://93206388.qcloud.la/';
+const BASE_URL = 'http://o81ljhejf.bkt.clouddn.com/';
 
 function getImageUrlArray(length) {
   var resultArray = [];
 
   for (var i = 0; i < 3; i++) {
     resultArray.push('../../resources/pic/' + i.toString() + '.jpg');
+    //resultArray.push('http://o81ljhejf.bkt.clouddn.com/' + i.toString() + '.jpg');
   }
 
   for (var i=3; i<length; i++) {

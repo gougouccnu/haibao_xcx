@@ -5,20 +5,25 @@ var address3Json = {};
 var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
-const ITEMS_BEFORE_PAY = 14;
+const ITEMS_BEFORE_PAY = 24;
+const ITEMS_AFTER_PAY = 90
 const BASE_URL = 'https://93206388.qcloud.la/';
 
 function getImageUrlArray(length) {
   var resultArray = [];
 
-  for (var i=0; i<length; i++) {
+  for (var i = 0; i < 3; i++) {
+    resultArray.push('../../resources/pic/' + i.toString() + '.jpg');
+  }
+
+  for (var i=3; i<length; i++) {
     resultArray.push(BASE_URL + i.toString() + '.jpg');
   }
 
   return resultArray;
 }
 
-var imageUrlArray = getImageUrlArray(50);
+var imageUrlArray = getImageUrlArray(ITEMS_AFTER_PAY);
 
 var swiperCurrentIndex = 0;
 
@@ -91,6 +96,7 @@ Page({
                 });
               }
             });
+            break;
             case 1:
               wx.navigateTo({
                 url: '../../pages/contact/contact',
@@ -175,7 +181,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: imageUrlArray.slice(0,32),
+                            imgUrls: imageUrlArray.slice(0,ITEMS_AFTER_PAY),
                             current: ITEMS_BEFORE_PAY
                           })
                           
@@ -259,7 +265,7 @@ Page({
     console.log(imageUrlArray);
 
     this.setData({
-      imgUrls: imageUrlArray.slice(0, 13)
+      imgUrls: imageUrlArray.slice(0, ITEMS_BEFORE_PAY)
     });
 
     try {
@@ -268,7 +274,7 @@ Page({
         // Do something with return value
         this.setData({
           isPayed: true,
-          imgUrls: imageUrlArray.slice(0, 32),
+          imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
         });
       }
     } catch (e) {

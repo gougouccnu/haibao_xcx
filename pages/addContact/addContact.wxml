@@ -5,7 +5,7 @@
     </view-->
         <!--view class="section section_gap swiper"-->
        
-            <swiper indicator-dots="true" current="0" class="userinfo" style="height: 568px;" bindchange="swiperChange" bindlongtap="longtap">
+            <!--swiper indicator-dots="true" current="0" class="userinfo" style="height: 568px;" bindchange="swiperChange" bindlongtap="longtap">
                 <block wx:for="{{imgUrls}}">
                   <swiper-item>
                     <image src="{{item}}" mode="aspectFit" style="width:100%; height: 100%;"/>
@@ -19,7 +19,7 @@
                         <button id="pay_l" style="margin-top: 10px;" size="default" type="" bindtap="pay_l">支付9.9元，查看剩余99张</button>
                      </view>
                 </swiper-item>
-            </swiper>
+            </swiper-->
      
         <!--view class="btn-area">
             <button type="default" bindtap="changeIndicatorDots">indicator-dots</button>
@@ -30,6 +30,25 @@
         <view class="section__title">duration</view>
         <slider bindchange="intervalChange" value="{{interval}}" show-value min="2000" max="10000"/>
         <view class="section__title">interval</view-->
+
+        <view style="display:none">
+  <image wx:for="{{images}}" wx:key="id" id="{{item.id}}" src="{{item.pic}}" bindload="onImageLoad"></image>
+</view>
+<scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="scrollToLower">
+  <view style="width:100%">
+    <view class="img_item">
+      <view wx:for="{{col1}}" wx:key="id">
+        <image src="{{item.pic}}" id="{{item.id}}" bindtap="imageTap" style="width:100%;height:{{item.height}}px"></image>
+      </view>
+    </view>
+    <view class="img_item">
+      <view wx:for="{{col2}}" wx:key="id">
+        <image src="{{item.pic}}" id="{{item.id}}" bindtap="imageTap" style="width:100%;height:{{item.height}}px"></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
 
 </view>
 

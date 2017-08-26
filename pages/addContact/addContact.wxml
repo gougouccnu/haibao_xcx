@@ -49,7 +49,7 @@
   </view>
 </scroll-view>
 
-<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+<view wx:if="{{!isPayed}}" class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
     <view class="zan-dialog__mask" bindtap="toggleDialog" />
     <view class="zan-dialog__container">
       <!--view style="padding: 100px 0; text-align: center;">Dialog内容</view-->

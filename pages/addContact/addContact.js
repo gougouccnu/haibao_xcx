@@ -151,7 +151,7 @@ Page({
     });
   },
 
-  loadImages: function () {
+  loadImages: function (image_count) {
     let images = [
       { pic: "http://o81ljhejf.bkt.clouddn.com/0.jpg", height: 0 },
       { pic: "http://o81ljhejf.bkt.clouddn.com/1.jpg", height: 0 },
@@ -180,7 +180,8 @@ Page({
     }
 
     this.setData({
-      loadingCount: this.data.images.length
+      //loadingCount: this.data.images.length
+      loadingCount: image_count
       //images: images
     });
   },
@@ -296,7 +297,7 @@ Page({
                 //统一下单接口对接
                 wx.request({
                   //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
-                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=660&openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=330&openid=' + response.data.openid,
 
                   success: function (res) {
 
@@ -325,9 +326,11 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(0,ITEMS_AFTER_PAY_S),
+                            images: imageUrlArray.slice(ITEMS_BEFORE_PAY,ITEMS_AFTER_PAY_S),
                             current: ITEMS_BEFORE_PAY
-                          })
+                          });
+                          // load new images
+                          that.loadImages(that.data.images.length);
                           
                         },
                         fail: function (res) {
@@ -424,9 +427,12 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
+                            images: imageUrlArray.slice(ITEMS_AFTER_PAY_S, ITEMS_AFTER_PAY),
                             current: ITEMS_BEFORE_PAY
-                          })
+                          });
+                          // load new images
+                          that.loadImages(that.data.images.length);
+
 
                         },
                         fail: function (res) {
@@ -494,7 +500,7 @@ Page({
                 //统一下单接口对接
                 wx.request({
                   //url: 'http://localhost:8080/wxpay?openid=' + response.data.openid,
-                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=660&openid=' + response.data.openid,
+                  url: 'https://93206388.qcloud.la/wxpay?body=postor&total_fee=990&openid=' + response.data.openid,
 
                   success: function (res) {
 
@@ -523,9 +529,11 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
+                            images: imageUrlArray.slice(ITEMS_AFTER_PAY, ITEMS_AFTER_PAY_L),
                             current: ITEMS_BEFORE_PAY
-                          })
+                          });
+                          // load new images
+                          that.loadImages(that.data.images.length);
 
                         },
                         fail: function (res) {
@@ -664,7 +672,7 @@ Page({
           imgWidth: imgWidth
         });
 
-        this.loadImages();
+        this.loadImages(this.data.images.length);
       }
     })
 

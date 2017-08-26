@@ -24,12 +24,12 @@ function getImageUrlArray(length) {
   var resultArray = [];
 
   for (var i = 0; i < 3; i++) {
-    resultArray.push('../../resources/pic/' + i.toString() + '.jpg');
+    resultArray.push({pic: '../../resources/pic/' + i.toString() + '.jpg', height: 0, id: i.toString()});
     //resultArray.push('http://o81ljhejf.bkt.clouddn.com/' + i.toString() + '.jpg');
   }
 
   for (var i=3; i<length; i++) {
-    resultArray.push(BASE_URL + i.toString() + '.jpg');
+    resultArray.push({pic: BASE_URL + i.toString() + '.jpg', height: 0, id: i.toString()});
   }
 
   return resultArray;
@@ -56,7 +56,7 @@ Page({
     images: [],
     col1: [],
     col2: [],
-    imgUrls: [],
+    //imgUrls: [],
     current: 0,
     isPayed: false,
     showDialog: false
@@ -85,7 +85,7 @@ Page({
     });
   },
 
-  onLoad: function () {
+  onLoad2: function () {
     wx.getSystemInfo({
       success: (res) => {
         let ww = res.windowWidth;
@@ -170,6 +170,8 @@ Page({
       { pic: "http://o81ljhejf.bkt.clouddn.com/14.jpg", height: 0 }
     ];
 
+
+
     //let baseId = "img-" + (+new Date());
 
     for (let i = 0; i < images.length; i++) {
@@ -178,8 +180,8 @@ Page({
     }
 
     this.setData({
-      loadingCount: images.length,
-      images: images
+      loadingCount: this.data.images.length
+      //images: images
     });
   },
 
@@ -323,7 +325,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: imageUrlArray.slice(0,ITEMS_AFTER_PAY_S),
+                            images: imageUrlArray.slice(0,ITEMS_AFTER_PAY_S),
                             current: ITEMS_BEFORE_PAY
                           })
                           
@@ -422,7 +424,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
+                            images: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
                             current: ITEMS_BEFORE_PAY
                           })
 
@@ -521,7 +523,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
+                            images: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
                             current: ITEMS_BEFORE_PAY
                           })
 
@@ -579,99 +581,115 @@ Page({
     swiperCurrentIndex = e.detail.current;
   },
 
-  // onLoad: function (options) {
-  //   area = ['选择省份', '北京市', '天津市', '河北省', '山西省', '内蒙古自治区', '辽宁省', '吉林省', '黑龙江省', '上海市', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆市', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区', '台湾省', '香港特别行政区', '澳门特别行政区'];
-  //   var addressJson = require('../common/address3.js');
-  //   address3Json = addressJson.address3();
-  //   console.log(address3Json)
-  //   console.log(options)
-  //   if(options.editContact == 'true') {
-  //     var contactsArray = wx.getStorageSync('contactsArray') || []
-  //     var contact = contactsArray[parseInt(options.checkItemId)];
-  //     console.log(contact)
-  //     if (contactsArray.length > 0) {
-  //       this.setData({
-  //         nameInputValue: contact["name"],
-  //         phoneInputValue: contact["phone"],
-  //         areaRange: area
-  //       })
-  //     }
-  //   } else {
-  //     this.setData({
-  //       areaRange: area
-  //     })
-  //   }
+  onLoad: function (options) {
+    area = ['选择省份', '北京市', '天津市', '河北省', '山西省', '内蒙古自治区', '辽宁省', '吉林省', '黑龙江省', '上海市', '江苏省', '浙江省', '安徽省', '福建省', '江西省', '山东省', '河南省', '湖北省', '湖南省', '广东省', '广西壮族自治区', '海南省', '重庆市', '四川省', '贵州省', '云南省', '西藏自治区', '陕西省', '甘肃省', '青海省', '宁夏回族自治区', '新疆维吾尔自治区', '台湾省', '香港特别行政区', '澳门特别行政区'];
+    var addressJson = require('../common/address3.js');
+    address3Json = addressJson.address3();
+    console.log(address3Json)
+    console.log(options)
+    if(options.editContact == 'true') {
+      var contactsArray = wx.getStorageSync('contactsArray') || []
+      var contact = contactsArray[parseInt(options.checkItemId)];
+      console.log(contact)
+      if (contactsArray.length > 0) {
+        this.setData({
+          nameInputValue: contact["name"],
+          phoneInputValue: contact["phone"],
+          areaRange: area
+        })
+      }
+    } else {
+      this.setData({
+        areaRange: area
+      })
+    }
 
-  //   console.log(imageUrlArray);
+    console.log(imageUrlArray);
 
-  //   this.setData({
-  //     imgUrls: imageUrlArray.slice(0, ITEMS_BEFORE_PAY)
-  //   });
+    this.setData({
+      images: imageUrlArray.slice(0, ITEMS_BEFORE_PAY)
+    });
 
-  //   try {
-  //     var value = wx.getStorageSync(IS_PAYED_KEY)
-  //     if (value) {
-  //       // Do something with return value
-  //       this.setData({
-  //         isPayed: true,
-  //         imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     // Do something when catch error
-  //     console.log('get storage fail');
-  //   }
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true,
+          images: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('get storage fail');
+    }
 
-  //   try {
-  //     var value = wx.getStorageSync(IS_PAYED_KEY_S)
-  //     if (value) {
-  //       // Do something with return value
-  //       this.setData({
-  //         isPayed: true,
-  //         imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_S),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     // Do something when catch error
-  //     console.log('get storage fail');
-  //   }
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY_S)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true,
+          images: imageUrlArray.slice(0, ITEMS_AFTER_PAY_S),
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('get storage fail');
+    }
 
-  //   try {
-  //     var value = wx.getStorageSync(IS_PAYED_KEY_L)
-  //     if (value) {
-  //       // Do something with return value
-  //       this.setData({
-  //         isPayed: true,
-  //         imgUrls: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
-  //       });
-  //     }
-  //   } catch (e) {
-  //     // Do something when catch error
-  //     console.log('get storage fail');
-  //   }
+    try {
+      var value = wx.getStorageSync(IS_PAYED_KEY_L)
+      if (value) {
+        // Do something with return value
+        this.setData({
+          isPayed: true,
+          images: imageUrlArray.slice(0, ITEMS_AFTER_PAY_L),
+        });
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('get storage fail');
+    }
+
+    wx.getSystemInfo({
+      success: (res) => {
+        let ww = res.windowWidth;
+        let wh = res.windowHeight;
+        let imgWidth = ww * 0.48;
+        let scrollH = wh;
+
+        this.setData({
+          scrollH: scrollH,
+          imgWidth: imgWidth
+        });
+
+        this.loadImages();
+      }
+    })
 
 
-  //   wx.showModal({
-  //     title: '提示',
-  //     confirmText: '朕知道了',
-  //     content: '左右滑动查看海报,长按海报可保存',
-  //     showCancel: false,
-  //     success: function (res) {
-  //       if (res.confirm) {
-  //         console.log('用户点击确定')
-  //       } else if (res.cancel) {
-  //         console.log('用户点击取消')
-  //       }
-  //     }
-  //   })
+    // wx.showModal({
+    //   title: '提示',
+    //   confirmText: '朕知道了',
+    //   content: '左右滑动查看海报,长按海报可保存',
+    //   showCancel: false,
+    //   success: function (res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定')
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //     }
+    //   }
+    // })
 
-  //   // wx.showToast({
-  //   //   title: '长按图片可保存',
-  //   //   icon: 'success',
-  //   //   duration: 2000
-  //   // })
+    // wx.showToast({
+    //   title: '长按图片可保存',
+    //   icon: 'success',
+    //   duration: 2000
+    // })
 
-  // },
+  },
 
   onShow: function () {
 

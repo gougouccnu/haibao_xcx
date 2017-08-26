@@ -58,7 +58,8 @@ Page({
     col2: [],
     imgUrls: [],
     current: 0,
-    isPayed: false
+    isPayed: false,
+    showDialog: false
   },
 
   imageTap: function (e) {
@@ -72,6 +73,16 @@ Page({
 
   scrollToLower: function () {
     console.log('scroll to bottom');
+    this.setData({
+      showDialog: true
+    });
+  },
+
+  toggleDialog: function () {
+    console.log('toggle dialog');
+    this.setData({
+      showDialog: !this.data.showDialog
+    });
   },
 
   onLoad: function () {

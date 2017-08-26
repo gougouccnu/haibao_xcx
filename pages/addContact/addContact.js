@@ -106,41 +106,43 @@ Page({
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
       if (img.id === imageId) {
+        img.height = imgHeight
         imageObj = img;
         break;
       }
     }
 
-    imageObj.height = imgHeight;
-
     let loadingCount = this.data.loadingCount - 1;
-    let col1 = this.data.col1;
-    let col2 = this.data.col2;
-
-    if (col1H <= col2H) {
-      col1H += imgHeight;
-      col1.push(imageObj);
-    } else {
-      col2H += imgHeight;
-      col2.push(imageObj);
-    }
-
-    let data = {
-      loadingCount: loadingCount,
-      col1: col1,
-      col2: col2
-    };
-    console.log(col1);
 
     if (!loadingCount) {
-      data.images = [];
+      let col1 = this.data.col1;
+      let col2 = this.data.col2;
+
+      for (let i of images) {
+        if (col1H <= col2H) {
+          col1H += i.height;
+          col1.push(i);
+        } else {
+          col2H += i.height;
+          col2.push(i);
+        }
+      }
+
+      this.setData({
+        col1: col1,
+        col2: col2,
+        images: []
+      })
     }
 
-    this.setData(data);
+    this.setData({
+      loadingCount: loadingCount
+    });
   },
 
   loadImages: function () {
     let images = [
+      { pic: "http://o81ljhejf.bkt.clouddn.com/0.jpg", height: 0 },
       { pic: "http://o81ljhejf.bkt.clouddn.com/1.jpg", height: 0 },
       { pic: "http://o81ljhejf.bkt.clouddn.com/2.jpg", height: 0 },
       { pic: "http://o81ljhejf.bkt.clouddn.com/3.jpg", height: 0 },

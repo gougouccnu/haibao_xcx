@@ -6,16 +6,16 @@ var address3Json = {};
 var selectedArea;
 
 const IS_PAYED_KEY = "isPayed";
-const ITEMS_BEFORE_PAY = 24;
-const ITEMS_AFTER_PAY = 90;
+const ITEMS_BEFORE_PAY = 34;
+const ITEMS_AFTER_PAY = 100;
 
 
 const IS_PAYED_KEY_S = "isPayed_s";
-const ITEMS_AFTER_PAY_S = 57;
+const ITEMS_AFTER_PAY_S = 67;
 
 
 const IS_PAYED_KEY_L = "isPayed_l";
-const ITEMS_AFTER_PAY_L = 123;
+const ITEMS_AFTER_PAY_L = 133;
 
 //const BASE_URL = 'https://93206388.qcloud.la/';
 const BASE_URL = 'http://o81ljhejf.bkt.clouddn.com/';

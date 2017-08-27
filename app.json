@@ -2,10 +2,24 @@
   "pages": [
     
     "pages/addContact/addContact",
-    "pages/contact/contact"
+    "pages/contact/contact",
+    "pages/index/index"
   ],
   "window": {
     "navigationBarTitleText": "裂变海报大全"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/addContact/addContact",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "关于"
+      }
+    ],
+    "position": "top"
   },
   "debug": false
 }

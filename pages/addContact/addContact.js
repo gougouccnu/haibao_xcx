@@ -20,6 +20,8 @@ const ITEMS_AFTER_PAY_L = 133;
 //const BASE_URL = 'https://93206388.qcloud.la/';
 const BASE_URL = 'http://o81ljhejf.bkt.clouddn.com/';
 
+var app = getApp();
+
 function getImageUrlArray(length) {
   var resultArray = [];
 
@@ -340,6 +342,18 @@ Page({
                             title: '已取消支付',
                             icon: 'success'
                           });
+
+                          if(app.globalData.debug) {
+                            wx.setStorageSync(IS_PAYED_KEY_S, true);
+
+                            that.setData({
+                              isPayed: true,
+                              images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_S),
+                              current: ITEMS_BEFORE_PAY
+                            });
+                            // load new images
+                            that.loadImages(that.data.images.length);
+                          }
                         },
                         complete: function () {
 
@@ -427,7 +441,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(ITEMS_AFTER_PAY_S, ITEMS_AFTER_PAY),
+                            images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_S),
                             current: ITEMS_BEFORE_PAY
                           });
                           // load new images
@@ -442,6 +456,22 @@ Page({
                             title: '已取消支付',
                             icon: 'success'
                           });
+
+                          if(app.globalData.debug) {
+                            wx.setStorageSync(IS_PAYED_KEY, true);
+
+                            // wx.navigateTo({
+                            //   url: '/pages/more/more',
+                            // })
+
+                            that.setData({
+                              isPayed: true,
+                              images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_S),
+                              current: ITEMS_BEFORE_PAY
+                            });
+                            // load new images
+                            that.loadImages(that.data.images.length);  
+                          }
                         },
                         complete: function () {
 
@@ -529,7 +559,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(ITEMS_AFTER_PAY, ITEMS_AFTER_PAY_L),
+                            images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_L),
                             current: ITEMS_BEFORE_PAY
                           });
                           // load new images
@@ -543,6 +573,22 @@ Page({
                             title: '已取消支付',
                             icon: 'success'
                           });
+
+                          if(app.globalData.debug) {
+                            wx.setStorageSync(IS_PAYED_KEY_L, true);
+
+                            // wx.navigateTo({
+                            //   url: '/pages/more/more',
+                            // })
+
+                            that.setData({
+                              isPayed: true,
+                              images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_L),
+                              current: ITEMS_BEFORE_PAY
+                            });
+                            // load new images
+                            that.loadImages(that.data.images.length);  
+                          }
                         },
                         complete: function () {
 

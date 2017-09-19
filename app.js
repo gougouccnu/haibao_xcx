@@ -47,6 +47,7 @@ App({
   //   }
   // },
   globalData:{
+    debug: true,
     userInfo:null,
     currentVoiceSpeed: {"name": "select voice speed", "value": 5}
   }

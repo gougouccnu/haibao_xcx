@@ -5,9 +5,9 @@ var area, city, street, cityRange, streetRange;
 var address3Json = {};
 var selectedArea;
 
-const IS_PAYED_KEY = "isPayed";
+const IS_PAYED_KEY_M = "isPayed_m";
 const ITEMS_BEFORE_PAY = 34;
-const ITEMS_AFTER_PAY = 100;
+const ITEMS_AFTER_PAY_M = 100;
 
 
 const IS_PAYED_KEY_S = "isPayed_s";
@@ -433,7 +433,7 @@ Page({
                             icon: 'success'
                           });
 
-                          wx.setStorageSync(IS_PAYED_KEY, true);
+                          wx.setStorageSync(IS_PAYED_KEY_M, true);
 
                           // wx.navigateTo({
                           //   url: '/pages/more/more',
@@ -441,7 +441,7 @@ Page({
 
                           that.setData({
                             isPayed: true,
-                            images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_S),
+                            images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_M),
                             current: ITEMS_BEFORE_PAY
                           });
                           // load new images
@@ -458,7 +458,7 @@ Page({
                           });
 
                           if(app.globalData.debug) {
-                            wx.setStorageSync(IS_PAYED_KEY, true);
+                            wx.setStorageSync(IS_PAYED_KEY_M, true);
 
                             // wx.navigateTo({
                             //   url: '/pages/more/more',
@@ -466,7 +466,7 @@ Page({
 
                             that.setData({
                               isPayed: true,
-                              images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_S),
+                              images: imageUrlArray.slice(ITEMS_BEFORE_PAY, ITEMS_AFTER_PAY_M),
                               current: ITEMS_BEFORE_PAY
                             });
                             // load new images
@@ -625,7 +625,7 @@ Page({
   swiperChange: function(e) {
     console.log(e.detail);
     // if (e.detail.current === ITEMS_BEFORE_PAY) {
-    //   var isPayed = wx.getStorageSync(IS_PAYED_KEY);
+    //   var isPayed = wx.getStorageSync(IS_PAYED_KEY_M);
     //   if(isPayed === true) {
     //     wx.navigateTo({
     //       url: '/pages/more/more',
@@ -665,12 +665,12 @@ Page({
     });
 
     try {
-      var value = wx.getStorageSync(IS_PAYED_KEY)
+      var value = wx.getStorageSync(IS_PAYED_KEY_M)
       if (value) {
         // Do something with return value
         this.setData({
           isPayed: true,
-          images: imageUrlArray.slice(0, ITEMS_AFTER_PAY),
+          images: imageUrlArray.slice(0, ITEMS_AFTER_PAY_M),
         });
       }
     } catch (e) {

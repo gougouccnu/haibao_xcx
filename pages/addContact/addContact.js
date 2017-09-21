@@ -5,17 +5,17 @@ var area, city, street, cityRange, streetRange;
 var address3Json = {};
 var selectedArea;
 
-const IS_PAYED_KEY_M = "isPayed_m";
 const ITEMS_BEFORE_PAY = 34;
-const ITEMS_AFTER_PAY_M = 100;
 
 
 const IS_PAYED_KEY_S = "isPayed_s";
 const ITEMS_AFTER_PAY_S = 67;
 
+const IS_PAYED_KEY_M = "isPayed_m";
+const ITEMS_AFTER_PAY_M = 100+33;
 
 const IS_PAYED_KEY_L = "isPayed_l";
-const ITEMS_AFTER_PAY_L = 133;
+const ITEMS_AFTER_PAY_L = 133+33+33;
 
 //const BASE_URL = 'https://93206388.qcloud.la/';
 const BASE_URL = 'http://o81ljhejf.bkt.clouddn.com/';

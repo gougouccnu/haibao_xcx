@@ -55,8 +55,8 @@
       <!--view style="padding: 100px 0; text-align: center;">Dialog内容</view-->
       <view class="userinfo">
                         <button id="pay_s" style="margin-top: 10px;" class="" size="default" type="" bindtap="pay_s">支付3.3元，查看剩余33张</button>
-                        <button id="pay" style="margin-top: 10px;" size="default" type="primary" bindtap="pay">支付6.6元，查看剩余66张</button>
-                        <button id="pay_l" style="margin-top: 10px;" size="default" type="" bindtap="pay_l">支付9.9元，查看剩余99张</button>
+                        <button id="pay" style="margin-top: 10px;" size="default" type="primary" bindtap="pay">支付6.6元，查看剩余99张</button>
+                        <button id="pay_l" style="margin-top: 10px;" size="default" type="" bindtap="pay_l">支付9.9元，查看剩余162张</button>
                         <button id="share" style="margin-top: 30px;" size="default" type="" open-type="share">我要转发给可能需要的朋友</button>
                      </view>
     </view>
